@@ -1,0 +1,501 @@
+---
+title: "Discrimination, Trust, and Hope in Political Change in Europe 2016"
+subtitle: "Structural Equation Modeling Course Project - KU Leuven"
+author: "MohammadHossein Manuel Haqiqatkhah - R0607671"
+date: "August 2019"
+bibliography: ref.bib
+output: pdf_document
+---
+
+
+```{r setup, include = FALSE, echo = FALSE}
+list.of.packages <- c("tidyverse",
+                      "plyr",
+                      "qgraph",
+                      "dplyr",
+                      "knitr",
+                      "kableExtra",
+                      "psych",
+                      "kutils",
+                      "semPlot",
+                      "lavaan")
+new.packages <-
+  list.of.packages[!(list.of.packages %in% installed.packages()[, "Package"])]
+if (length(new.packages)) {
+  install.packages(new.packages, repos='http://cran.us.r-project.org')
+}
+tmp <- lapply(list.of.packages, require, character.only = TRUE)
+
+rm(list.of.packages, new.packages, tmp)
+
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+# rm(list = ls())
+
+```
+
+
+```{r handy-functions}
+
+pagebreak <- function(){
+  if(knitr::is_latex_output())
+    return("\\newpage")
+  else
+    return('<div style="page-break-before: always;" />')
+}
+
+
+l_o <- function(m, d = d){
+
+  f <- lavaan(m,
+              d,
+              ordered = c("psppsgva",
+                          "actrolga",
+                          "psppipla",
+                          "cptppola"),
+              std.lv = TRUE,
+              auto.var=TRUE)
+
+  s <- f %>%
+    parameterEstimates(add.attributes = TRUE) %>%
+    filter(est != 0)
+  # colnames(s)[1:3] <- c("Of", "op", "on")
+  fm <- f %>% fitmeasures()
+  r <- s %>% filter(op == "~") %>% select(-exo)
+
+
+  o <- list(f = f,
+            s = s,
+            l = s %>% filter(op == "=~") %>% select(-exo),
+            vcv = s %>% filter(op == "~~") %>% select(-exo),
+            r = r,
+            PolTrst = r %>% filter(lhs=="PolTrst"),
+            PolHope = r %>% filter(lhs=="PolHope"),
+            PolPess = r %>% filter(lhs=="PolPess"),
+            SocTrst = r %>% filter(lhs=="SocTrst"),
+            inc = s %>% filter(op == "~1", est != 0) %>% select(-exo),
+            thr = s %>% filter(op == "|") %>% select(-exo),
+            ch = round(fm["chisq"],2),
+            df = round(fm["df"],0),
+            p = round(fm["p"],3),
+            cfi = round(fm["cfi"],3),
+            rmsea = round(fm["rmsea"],3),
+            srmr = round(fm["srmr"],3),
+            tli = round(fm["tli.scaled"],3)
+  )
+
+
+  o %>% return()
+}
+
+p <- function(f, edge.label.cex = 0.85){
+
+  semPaths(f,
+           title = FALSE,
+           curvePivot = T,
+           what = "std",
+           rotation = 4,
+           # edge.color = "black",
+           # style = "mx",
+           layout = "tree3",
+           optimizeLatRes = TRUE,
+           intercepts = FALSE,
+           edge.label.cex = edge.label.cex,
+           exoVar=FALSE,
+           sizeMan = 5,
+           # centerLevels = FALSE,
+           sizeLat=10,
+           nCharNodes=15,
+           # groups = "latents",
+           # fixedStyle=1,
+           # freeStyle=1,
+           # filetype = "pdf", # Store to PDF
+           # filename = "x", # Set the name of the file
+           # mar = c(1, 1, 1, 1),
+           residuals=FALSE
+  )
+
+}
+
+```
+
+
+```{r data}
+
+# selecting items and reading data ----------------------------------------------
+
+items <- list(
+  discrimination = c("dscrrce",
+                     "dscrntn",
+                     "dscrrlg",
+                     "dscrlng",
+                     "dscretn",
+                     "dscrage",
+                     "dscrgnd",
+                     "dscrsex",
+                     "dscrdsb",
+                     "dscroth"
+  ),
+
+  SocTrst = c("ppltrst",
+              "pplfair",
+              "pplhlp"
+  ),
+
+  PolTrst = c("trstprl",
+              "trstlgl",
+              "trstplc",
+              "trstplt",
+              "trstprt"
+  ),
+
+  PolHope = c("psppsgva",
+              "actrolga",
+              "psppipla",
+              "cptppola"),
+
+  interest_political = "polintr"
+
+)
+
+# items_ordered <- items
+# items_ordered$SocTrst <- NULL
+# items_ordered$PolTrst <- NULL
+# items_ordered <- items$PolHope
+# items_ordered <- items_ordered %>% unlist() %>% as.character()
+
+## reading, selecting, and saving the abridged data to GitHub
+# data.orig <- read.csv("https://raw.githubusercontent.com/psyguy/sem-course-project/master/data/ESS8e02.1_F1.csv")
+# data.orig <- read.csv("data/ESS8e02.1_F1.csv")
+# d <- data.orig %>% select(cntry, as.character(unlist(items)))
+# d %>% write.csv("data/ess2016_selected.csv", row.names = FALSE)
+
+data <- read.csv("https://github.com/psyguy/sem-course-project/raw/master/data/ess2016_selected.csv")
+
+
+# cleaning/recoding the data ----------------------------------------------
+
+d <- data
+# removing invalid/missing data
+d[d>10] <- NA
+d$polintr[d$polintr>4] <- NA
+d[,20:23][d[,20:23]>5] <- NA
+# reverse-coding polint
+d$polintr <- (d$polintr-5) %>% abs()
+
+dscrscore <- d %>% select(contains("dscr")) %>% rowSums()
+
+ds <- d %>% select(contains("dscr"))
+dspc <- (princomp(ds,1)$scores)[,1]
+
+d <- d %>% cbind(dscrscore, dspc) %>%  na.omit()
+
+# d <- d %>% filter(cntry == "BE")
+
+```
+
+
+# Introduction
+
+Democracy literally means "rule by the people," and hence it heavily relies on the citizens---what is to a government which lacks *rulers*?
+  In democratic societies, citizens participate in their government by delegating their power to their representatives, i.e., politicians. However, not all delegates deserve trust, and not all people find other members of society---normal or powerful---trustworthy.
+
+On the other hand, the *ruler* (i.e., the citizens) should see a positive outlook of their ruling---that it is effective and can, hopefully, make a difference.
+
+Among the myriad of factors involved in trust in others (including politicians) and hope in the efficacy of citizens' participation in democracy, perception of discrimination might play a key role. If members of a society feel being discriminated against, they might tend to trust others (and their politicians) less, and see a less bright future in the horizon.
+
+This study, based on the 8th round of the European Social Survey (ESS) data [-@noauthor_european_2017], investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other---and how.
+
+# Research Hypothesis
+
+Is there a link between the perception of discrimination and trust in others and hope in the effectiveness of participation in politics?
+
+
+# Material
+
+The original dataset included responses from 23 European countries participating in @noauthor_european_2017. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and "don't know") were excluded from the dataset (making N = 44387).
+
+The items about discrimination were binary, including various forms of discrimination that people can experience. These items include `dscrrce`, `dscrntn`, `dscrrlg`, `dscrlng`, `dscretn`, `dscrage`, `dscrgnd`, `dscrsex`, `dscrdsb`, and `dscroth`. To summarize these items, another item (i.e., `dscrscore`) was added to the dataset which was defined as some of the responses on the indicators of discrimination. Hence, experiencing multiple forms of discrimination increases the total score on the perception of discrimination.
+
+The items regarding trust belonged to two categories: trust in people in general (social trust, including ` ppltrst`, `pplfair`, and `pplhlp`) and trust in politicians or political institutions (political trust, including ` trstprl`, `trstlgl`, `trstplc`, `trstplt`, and `trstprt`). These items were discrete with 11 levels (0-10), hence treated as continuous. The items concerning political trust in the European Union and the United Nations were excluded, as they could be directly affected by responders' nationality and their perception of the role their country plays in (and how it is treated by) the EU and the UN.
+
+The items about hope in politics (i.e., ` psppsgva`, `actrolga`, `psppipla`, and `cptppola`) were recorded as qualitative responses in 5-level Likert scales (e.g., *Not at all*, *A little able*, *Quite able*, *Very able*, and *Completely able*), hence treated as ordered responses.
+
+Since the attitudes towards politics and politicians depend on whether the responder is interested in politics or not, the item indicating interest in politics (i.e., `polint`) was also added. `polint` was on a 4-level Likert scale and reverse-coded (1 to 4, for "Very interested" to "Not at all interested"). Hence, the coding was reversed in this study.
+
+# Modeling Strategy
+
+Perception of discrimination seems to be a latent formative construct; the various forms of discriminations one experiences *add up* to form that experience. Hence, at a first attempt, a latent variable of `discrimination` was included as a formative factor. However, due to sparsity of the responses on discrimination items, they reduced model fit while adding to model complexity. Hence, this formative factor was excluded from further modeling and two alternatives (using all discrimination items, and the sum score of the items) were used as exogenous variables.
+
+Since the social and political trust could be caused by distinct constructs, they were modeled by two latent variables: `SocTrst` and `PolTrst`, respectively. However, since they both share an element of "trust," these factors were allowed to correlate.
+
+The latent variable `PolHope` was also included and the items regarding hope in efficacy of political actions loaded on it.
+
+The interest in politics (i.e., `polint`) was used as an exogenous variable, upon which the latent variables can be regressed. Because of the non-normality of the responses, the intercept of items were included in the models (not shownin the outputs).
+
+All latent variances were fixed to one. The SEM analysis was done using R package `lavaan` [@rosseel_lavaan_2012], and the models were visualized using package `semPlot` [@epskamp_semplot_2015].
+
+## Model 1
+
+```{r}
+m1 <- "
+
+# 1. latent variable definitions
+
+PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+SocTrst =~ NA*ppltrst + pplfair + pplhlp
+PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+
+# 2. regressions
+
+PolHope + SocTrst + PolTrst ~ dscrscore + polintr
+
+# 3. (co)variances
+
+PolHope ~~ 1*PolHope
+SocTrst ~~ 1*SocTrst
+PolTrst ~~ 1*PolTrst
+
+PolHope ~~ SocTrst + PolTrst
+SocTrst ~~ PolTrst
+
+# 4. intercepts
+
+psppsgva + actrolga + psppipla + cptppola ~ 1
+ppltrst + pplfair + pplhlp ~ 1
+trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+
+"
+
+o1 <- l_o(m1, d)
+
+```
+
+
+The initial model had three latent variables, viz., `SocTrst`, `PolTrst`, and `PolHope` and the covariances were also included in the model. The model fit is shown in Figure 1. However, the model did not fit well: $\chi^2 =$ `r o1$ch`, df = `r o1$df`, and most importantly, RMSEA = `r o1$rmsea`, CFI = `r o1$cfi`, SRMR = `r o1$srmr`, and TLI = `r o1$tli`. The model fit of Model 1 is shown in Table 1.
+
+
+```{r fig1, results="asis", echo=FALSE, fig.cap="Model 1", fig.scap="Model 1"}
+
+p(o1$f)
+
+```
+
+
+```{r tbl1, results="asis", echo=FALSE, include=TRUE}
+
+kable(rbind(o1$l, o1$r, o1$thr),
+      "latex",
+      caption = "Estimated parameters of model 1",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+## Model 2
+
+```{r}
+m2 <- "
+
+# 1. latent variable definitions
+
+PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+SocTrst =~ NA*ppltrst + pplfair + pplhlp
+PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+PolPess =~ NA*psppsgva + actrolga + psppipla + cptppola +
+  trstprl + trstlgl + trstplc + trstplt + trstprt
+
+# 2. regressions
+
+PolHope + SocTrst + PolTrst + PolPess ~ dscrscore + polintr
+
+# 3. (co)variances
+
+PolHope ~~ 1*PolHope
+SocTrst ~~ 1*SocTrst
+PolTrst ~~ 1*PolTrst
+PolPess ~~ 1*PolPess
+
+PolHope ~~ SocTrst + PolTrst
+SocTrst ~~ PolTrst
+
+# 4. intercepts
+
+psppsgva + actrolga + psppipla + cptppola ~ 1
+ppltrst + pplfair + pplhlp ~ 1
+trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+
+"
+
+o2 <- l_o(m2, d)
+
+```
+
+
+The modification indices of Model 1 suggested that all the items of political trust and political be allowed to covary. This (together sith poor fit of Model 1) was an indication that those items can load on another factor. Hence, a forth factor was added to explain the remaining covariance of these items. Based on the loadings, it was called *Political pessimism* (coded as `PolPess`), that models a general the positive attitude towards politics.
+
+This model, shown in Figure 2, had a decent fit ($\chi^2 =$ `r o2$ch`, df = `r o2$df`, RMSEA = `r o2$rmsea`, CFI = `r o2$cfi`, SRMR = `r o2$srmr`, and TLI = `r o2$tli`.) More specifically, the $\chi^2$ has improved dramatically, and other fit indeces have passed the conventional thresholds (RMSEA < .05, CFI > .90, SRMR < .08, and TLI > .90). The parameter estimates of Model 2 is reported in Tables 2 and 3.
+
+
+```{r fig2, results="asis", echo=FALSE, fig.cap="Model 2", fig.scap="Model 2"}
+
+p(o2$f)
+
+```
+
+
+
+```{r tbl2, results="asis", echo=FALSE, include=TRUE}
+
+kable(rbind(o2$l, o2$thr),
+      "latex",
+      caption = "Estimated parameters of model 2 (loadings and thresholds)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+
+```{r tbl3, results="asis", echo=FALSE, include=TRUE}
+
+kable(rbind(o2$r),
+      "latex",
+      caption = "Estimated parameters of model 2 (regressions)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+## Model 3
+
+```{r}
+m3 <- "
+
+# 1. latent variable definitions
+
+PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+SocTrst =~ NA*ppltrst + pplfair + pplhlp
+PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+PolPess =~ NA*psppsgva + actrolga + psppipla + cptppola +
+  trstprl + trstlgl + trstplc + trstplt + trstprt
+
+# 2. regressions
+
+PolHope + SocTrst + PolTrst + PolPess ~ dscrrce + dscrntn + dscrrlg + dscrlng + dscretn + dscrage + dscrgnd + dscrsex + dscrdsb + dscroth
++ polintr
+
+# 3. (co)variances
+
+PolHope ~~ 1*PolHope
+SocTrst ~~ 1*SocTrst
+PolTrst ~~ 1*PolTrst
+PolPess ~~ 1*PolPess
+
+PolHope ~~ SocTrst + PolTrst
+SocTrst ~~ PolTrst
+
+# 4. intercepts
+
+psppsgva + actrolga + psppipla + cptppola ~ 1
+ppltrst + pplfair + pplhlp ~ 1
+trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+
+"
+
+o3 <- l_o(m3, d)
+
+```
+
+
+Although Model 2 shows a good fit, one might want to see whether different forms of discrimination have different effects in the model. To do so, instead of usnig the aggregated `dscrscore` in Model 2, all the indicators of discrimination were included in Model 3.
+
+This model had an even better fit ($\chi^2 =$ `r o3$ch`, df = `r o3$df`, RMSEA = `r o3$rmsea`, CFI = `r o3$cfi`, SRMR = `r o3$srmr`, and TLI = `r o3$tli`.) The $\chi^2$ has improved slightly, and other fit indeces have been further improved. However, this improvement might be negligible; the degrees of freedom of Model 3 is much higher than that of Model 2, and the fit measures are improved by higher df.
+
+The parameter estimates of Model 3 is reported in Tables 4-8 and is the graph is shown in Figure 3. For the sake of readability, the edges weights are removed in the plot.
+
+
+```{r fig3, results="asis", echo=FALSE, fig.cap="Model 3", fig.scap="Model 3"}
+
+p(o3$f, 0.00001)
+
+```
+
+
+```{r tbl4, results="asis", echo=FALSE, include=TRUE}
+
+kable(rbind(o3$l, o2$thr),
+      "latex",
+      caption = "Estimated parameters of model 3 (loadings and thresholds)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+```{r tbl5, results="asis", echo=FALSE, include=TRUE}
+
+kable(o3$PolHope,
+      "latex",
+      caption = "Estimated parameters of model 3 (regressions of Political Hope)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+```{r tbl6, results="asis", echo=FALSE, include=TRUE}
+
+kable(o3$SocTrst,
+      "latex",
+      caption = "Estimated parameters of model 3 (regressions of Social Trust)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+```{r tbl7, results="asis", echo=FALSE, include=TRUE}
+
+kable(o3$PolTrst,
+      "latex",
+      caption = "Estimated parameters of model 3 (regressions of Political Trust)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+```{r tbl8, results="asis", echo=FALSE, include=TRUE}
+
+kable(o3$PolPess,
+      "latex",
+      caption = "Estimated parameters of model 3 (regressions of Political pessimism)",
+      label = "l",
+      booktabs = T,
+      digits = 2) %>%
+  kable_styling(latex_options="scale_down")
+```
+
+
+
+# Discussion
+
+Due to poor fit, Model 1 is not a good abstraction of the data. Hence, the discussion focuses on Models 2 and 3.
+
+Model 2 shows that discrimination (if treated as a whole) negatively affects all latent factors, but the effect is small. Interestingly, interest in politics is negatively associated with political pessimism---those who show more interest in politics are less pessimistic (and more optimistic) about it. Social and political trust and political hope are all positively (and remarkably) manifested in the corresponding questions. In the same line, political pessimism is negatively associated with the belief that citizens can play an active role in politics (`actrolga`). The same goes for the belief that political systems allow citizens to partake in politics (`psppipla`), but at a smaller degree. Moreover, those with higher self-confidence in politics (that they can play a role in politics, `cptppola`) are much less pessimistic about politics.
+
+Finally, Model 3 gives limited additional insights (on top of Model 2) about the role of discrimination on the latent factors (as the loadings are rather small). However, it is very informative about the comorbidity of discriminations: minoritis tend to experience discriminations based on nationality (`dscrntn`), religion (`dscrrlg`), language (`dscrlng`), and ethnicity (`dscretn`).
+
+
+# References
+
+`r p(o1$f)`
