@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="MohammadHossein Manuel Haqiqatkhah - R0607671" />
+
+
+<title>Discrimination, Trust, and Hope in Political Change in Europe 2016</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row-fluid">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">ESS2016-DTH</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">Home</a>
+</li>
+<li>
+  <a href="about.html">About</a>
+</li>
+<li>
+  <a href="license.html">License</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Discrimination, Trust, and Hope in Political Change in Europe 2016</h1>
+<h3 class="subtitle">Structural Equation Modeling Course Project - KU Leuven</h3>
+<h4 class="author">MohammadHossein Manuel Haqiqatkhah - R0607671</h4>
+<h4 class="date">August 2019</h4>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-01-17
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+</p>
+<p>
+<strong>Knit directory:</strong> <code>ESS2016-DTH/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200116code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200116)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200116code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200116)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtreea353a22ecc7d5e0796e7d4732a21d60806caf26ftargetblanka353a22a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/psyguy/ESS2016-DTH/tree/a353a22ecc7d5e0796e7d4732a21d60806caf26f" target="_blank">a353a22</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtreea353a22ecc7d5e0796e7d4732a21d60806caf26ftargetblanka353a22a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  data/ess2016_selected.csv
+
+Unstaged changes:
+    Modified:   README.md
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p>Democracy literally means “rule by the people,” and hence it heavily relies on the citizens—what is to a government which lacks <em>rulers</em>? In democratic societies, citizens participate in their government by delegating their power to their representatives, i.e., politicians. However, not all delegates deserve trust, and not all people find other members of society—normal or powerful—trustworthy.</p>
+<p>On the other hand, the <em>ruler</em> (i.e., the citizens) should see a positive outlook of their ruling—that it is effective and can, hopefully, make a difference.</p>
+<p>Among the myriad of factors involved in trust in others (including politicians) and hope in the efficacy of citizens’ participation in democracy, perception of discrimination might play a key role. If members of a society feel being discriminated against, they might tend to trust others (and their politicians) less, and see a less bright future in the horizon.</p>
+<p>This study, based on the 8th round of the European Social Survey (ESS) data <span class="citation">(“European Social Survey (ESS), Round 8 - 2016” 2017)</span>, investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other—and how.</p>
+</div>
+<div id="research-hypothesis" class="section level1">
+<h1>Research Hypothesis</h1>
+<p>Is there a link between the perception of discrimination and trust in others and hope in the effectiveness of participation in politics?</p>
+</div>
+<div id="material" class="section level1">
+<h1>Material</h1>
+<p>The original dataset included responses from 23 European countries participating in <span class="citation">(“European Social Survey (ESS), Round 8 - 2016” 2017)</span>. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and “don’t know”) were excluded from the dataset (making N = 44387).</p>
+<p>The items about discrimination were binary, including various forms of discrimination that people can experience. These items include <code>dscrrce</code>, <code>dscrntn</code>, <code>dscrrlg</code>, <code>dscrlng</code>, <code>dscretn</code>, <code>dscrage</code>, <code>dscrgnd</code>, <code>dscrsex</code>, <code>dscrdsb</code>, and <code>dscroth</code>. To summarize these items, another item (i.e., <code>dscrscore</code>) was added to the dataset which was defined as some of the responses on the indicators of discrimination. Hence, experiencing multiple forms of discrimination increases the total score on the perception of discrimination.</p>
+<p>The items regarding trust belonged to two categories: trust in people in general (social trust, including <code>ppltrst</code>, <code>pplfair</code>, and <code>pplhlp</code>) and trust in politicians or political institutions (political trust, including <code>trstprl</code>, <code>trstlgl</code>, <code>trstplc</code>, <code>trstplt</code>, and <code>trstprt</code>). These items were discrete with 11 levels (0-10), hence treated as continuous. The items concerning political trust in the European Union and the United Nations were excluded, as they could be directly affected by responders’ nationality and their perception of the role their country plays in (and how it is treated by) the EU and the UN.</p>
+<p>The items about hope in politics (i.e., <code>psppsgva</code>, <code>actrolga</code>, <code>psppipla</code>, and <code>cptppola</code>) were recorded as qualitative responses in 5-level Likert scales (e.g., <em>Not at all</em>, <em>A little able</em>, <em>Quite able</em>, <em>Very able</em>, and <em>Completely able</em>), hence treated as ordered responses.</p>
+<p>Since the attitudes towards politics and politicians depend on whether the responder is interested in politics or not, the item indicating interest in politics (i.e., <code>polint</code>) was also added. <code>polint</code> was on a 4-level Likert scale and reverse-coded (1 to 4, for “Very interested” to “Not at all interested”). Hence, the coding was reversed in this study.</p>
+</div>
+<div id="modeling-strategy" class="section level1">
+<h1>Modeling Strategy</h1>
+<p>Perception of discrimination seems to be a latent formative construct; the various forms of discriminations one experiences <em>add up</em> to form that experience. Hence, at a first attempt, a latent variable of <code>discrimination</code> was included as a formative factor. However, due to sparsity of the responses on discrimination items, they reduced model fit while adding to model complexity. Hence, this formative factor was excluded from further modeling and two alternatives (using all discrimination items, and the sum score of the items) were used as exogenous variables.</p>
+<p>Since the social and political trust could be caused by distinct constructs, they were modeled by two latent variables: <code>SocTrst</code> and <code>PolTrst</code>, respectively. However, since they both share an element of “trust,” these factors were allowed to correlate.</p>
+<p>The latent variable <code>PolHope</code> was also included and the items regarding hope in efficacy of political actions loaded on it.</p>
+<p>The interest in politics (i.e., <code>polint</code>) was used as an exogenous variable, upon which the latent variables can be regressed. Because of the non-normality of the responses, the intercept of items were included in the models (not shownin the outputs).</p>
+<p>All latent variances were fixed to one. The SEM analysis was done using R package <code>lavaan</code> <span class="citation">(Rosseel 2012)</span>, and the models were visualized using package <code>semPlot</code> <span class="citation">(Epskamp 2015)</span>.</p>
+<div id="model-1" class="section level2">
+<h2>Model 1</h2>
+<p>The initial model had three latent variables, viz., <code>SocTrst</code>, <code>PolTrst</code>, and <code>PolHope</code> and the covariances were also included in the model. The model fit is shown in Figure 1. However, the model did not fit well: <span class="math inline">\(\chi^2 =\)</span> 3.05223110^{4}, df = 81, and most importantly, RMSEA = 0.096, CFI = 0.92, SRMR = 0.086, and TLI = 0.736. The model fit of Model 1 is shown in Table 1.</p>
+<div class="figure" style="text-align: center">
+<img src="figure/sem-report.Rmd/fig1-1.png" alt="Model 1" width="672" />
+<p class="caption">
+Model 1
+</p>
+</div>
+
+</div>
+<div id="model-2" class="section level2">
+<h2>Model 2</h2>
+<p>The modification indices of Model 1 suggested that all the items of political trust and political be allowed to covary. This (together sith poor fit of Model 1) was an indication that those items can load on another factor. Hence, a forth factor was added to explain the remaining covariance of these items. Based on the loadings, it was called <em>Political pessimism</em> (coded as <code>PolPess</code>), that models a general the positive attitude towards politics.</p>
+<p>This model, shown in Figure 2, had a decent fit (<span class="math inline">\(\chi^2 =\)</span> 2795.73, df = 70, RMSEA = 0.031, CFI = 0.993, SRMR = 0.035, and TLI = 0.954.) More specifically, the <span class="math inline">\(\chi^2\)</span> has improved dramatically, and other fit indeces have passed the conventional thresholds (RMSEA &lt; .05, CFI &gt; .90, SRMR &lt; .08, and TLI &gt; .90). The parameter estimates of Model 2 is reported in Tables 2 and 3.</p>
+<div class="figure" style="text-align: center">
+<img src="figure/sem-report.Rmd/fig2-1.png" alt="Model 2" width="672" />
+<p class="caption">
+Model 2
+</p>
+</div>
+
+
+</div>
+<div id="model-3" class="section level2">
+<h2>Model 3</h2>
+<p>Although Model 2 shows a good fit, one might want to see whether different forms of discrimination have different effects in the model. To do so, instead of usnig the aggregated <code>dscrscore</code> in Model 2, all the indicators of discrimination were included in Model 3.</p>
+<p>This model had an even better fit (<span class="math inline">\(\chi^2 =\)</span> 2598.28, df = 142, RMSEA = 0.021, CFI = 0.993, SRMR = 0.035, and TLI = 0.982.) The <span class="math inline">\(\chi^2\)</span> has improved slightly, and other fit indeces have been further improved. However, this improvement might be negligible; the degrees of freedom of Model 3 is much higher than that of Model 2, and the fit measures are improved by higher df.</p>
+<p>The parameter estimates of Model 3 is reported in Tables 4-8 and is the graph is shown in Figure 3. For the sake of readability, the edges weights are removed in the plot.</p>
+<div class="figure" style="text-align: center">
+<img src="figure/sem-report.Rmd/fig3-1.png" alt="Model 3" width="672" />
+<p class="caption">
+Model 3
+</p>
+</div>
+
+
+
+
+
+</div>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+<p>Due to poor fit, Model 1 is not a good abstraction of the data. Hence, the discussion focuses on Models 2 and 3.</p>
+<p>Model 2 shows that discrimination (if treated as a whole) negatively affects all latent factors, but the effect is small. Interestingly, interest in politics is negatively associated with political pessimism—those who show more interest in politics are less pessimistic (and more optimistic) about it. Social and political trust and political hope are all positively (and remarkably) manifested in the corresponding questions. In the same line, political pessimism is negatively associated with the belief that citizens can play an active role in politics (<code>actrolga</code>). The same goes for the belief that political systems allow citizens to partake in politics (<code>psppipla</code>), but at a smaller degree. Moreover, those with higher self-confidence in politics (that they can play a role in politics, <code>cptppola</code>) are much less pessimistic about politics.</p>
+<p>Finally, Model 3 gives limited additional insights (on top of Model 2) about the role of discrimination on the latent factors (as the loadings are rather small). However, it is very informative about the comorbidity of discriminations: minoritis tend to experience discriminations based on nationality (<code>dscrntn</code>), religion (<code>dscrrlg</code>), language (<code>dscrlng</code>), and ethnicity (<code>dscretn</code>).</p>
+</div>
+<div id="references" class="section level1">
+<h1>References</h1>
+<div id="refs">
+<div id="ref-epskamp_semplot_2015">
+<p>Epskamp, Sacha. 2015. “semPlot: Unified Visualizations of Structural Equation Models.” <em>Structural Equation Modeling: A Multidisciplinary Journal</em> 22 (3): 474–83. <a href="https://doi.org/10.1080/10705511.2014.937847">https://doi.org/10.1080/10705511.2014.937847</a>.</p>
+</div>
+<div id="ref-noauthor_european_2017">
+<p>“European Social Survey (ESS), Round 8 - 2016.” 2017. <em>NSD - Norwegian Centre for Research Data, Norway</em>. <a href="https://doi.org/10.21338/nsd-ess8-2016">https://doi.org/10.21338/nsd-ess8-2016</a>.</p>
+</div>
+<div id="ref-rosseel_lavaan_2012">
+<p>Rosseel, Yves. 2012. “{Lavaan:} An R Package for Structural Equation Modeling.” <em>Journal of Statistical Software</em> 48 (2). <a href="https://doi.org/10.18637/jss.v048.i02">https://doi.org/10.18637/jss.v048.i02</a>.</p>
+</div>
+</div>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre><code>R version 3.6.2 (2019-12-12)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 18362)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lavaan_0.6-5     semPlot_1.1.2    kutils_1.69      psych_1.8.12    
+ [5] kableExtra_1.1.0 knitr_1.26       qgraph_1.6.3     plyr_1.8.4      
+ [9] forcats_0.4.0    stringr_1.4.0    dplyr_0.8.3      purrr_0.3.3     
+[13] readr_1.3.1      tidyr_1.0.0      tibble_2.1.3     ggplot2_3.2.1   
+[17] tidyverse_1.2.1 
+
+loaded via a namespace (and not attached):
+  [1] minqa_1.2.4         colorspace_1.4-1    rjson_0.2.20       
+  [4] rprojroot_1.3-2     htmlTable_1.13.2    corpcor_1.6.9      
+  [7] base64enc_0.1-3     fs_1.3.1            rstudioapi_0.10    
+ [10] lubridate_1.7.4     xml2_1.2.2          splines_3.6.2      
+ [13] mnormt_1.5-5        glasso_1.11         zeallot_0.1.0      
+ [16] Formula_1.2-3       jsonlite_1.6        nloptr_1.2.1       
+ [19] workflowr_1.6.0     broom_0.5.2         cluster_2.1.0      
+ [22] png_0.1-7           regsem_1.3.9        compiler_3.6.2     
+ [25] httr_1.4.1          backports_1.1.5     assertthat_0.2.1   
+ [28] Matrix_1.2-18       lazyeval_0.2.2      cli_1.1.0          
+ [31] later_1.0.0         acepack_1.4.1       htmltools_0.4.0    
+ [34] tools_3.6.2         OpenMx_2.14.11      igraph_1.2.4.1     
+ [37] coda_0.19-3         gtable_0.3.0        glue_1.3.1         
+ [40] reshape2_1.4.3      Rcpp_1.0.3          carData_3.0-3      
+ [43] cellranger_1.1.0    vctrs_0.2.0         nlme_3.1-142       
+ [46] lisrelToR_0.1.4     xfun_0.11           lme4_1.1-21        
+ [49] openxlsx_4.1.3      rvest_0.3.5         ggm_2.3            
+ [52] lifecycle_0.1.0     gtools_3.8.1        XML_3.98-1.20      
+ [55] MASS_7.3-51.4       scales_1.0.0        BDgraph_2.62       
+ [58] hms_0.5.2           promises_1.1.0      parallel_3.6.2     
+ [61] huge_1.3.4          RColorBrewer_1.1-2  yaml_2.2.0         
+ [64] pbapply_1.4-2       gridExtra_2.3       rpart_4.1-15       
+ [67] latticeExtra_0.6-28 stringi_1.4.3       highr_0.8          
+ [70] sem_3.1-9           checkmate_1.9.4     boot_1.3-23        
+ [73] zip_2.0.4           truncnorm_1.0-8     rlang_0.4.1        
+ [76] pkgconfig_2.0.3     d3Network_0.5.2.1   Rsolnp_1.16        
+ [79] arm_1.10-1          evaluate_0.14       lattice_0.20-38    
+ [82] htmlwidgets_1.5.1   tidyselect_0.2.5    magrittr_1.5       
+ [85] R6_2.4.1            generics_0.0.2      Hmisc_4.3-0        
+ [88] pillar_1.4.2        haven_2.2.0         whisker_0.4        
+ [91] foreign_0.8-72      withr_2.1.2         rockchalk_1.8.144  
+ [94] survival_3.1-8      abind_1.4-5         nnet_7.3-12        
+ [97] modelr_0.1.5        crayon_1.3.4        fdrtool_1.2.15     
+[100] rmarkdown_1.17      jpeg_0.1-8.1        grid_3.6.2         
+[103] readxl_1.3.1        data.table_1.12.6   pbivnorm_0.6.0     
+[106] git2r_0.26.1        matrixcalc_1.0-3    digest_0.6.22      
+[109] webshot_0.5.1       mi_1.0              xtable_1.8-4       
+[112] httpuv_1.5.2        stats4_3.6.2        munsell_0.5.0      
+[115] viridisLite_0.3.0  </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_').toLowerCase();
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
