@@ -1,10 +1,10 @@
 name: "ESS2016-DTH"
 output_dir: ../docs
 navbar:
-  title: "ESS2016-DTH"
+  title: "Discrimination, Trust, and Hope in Political Change in Europe 2016"
   left:
   - text: Home
-    href: index.html
+    href: sem-report.html
   - text: About
     href: about.html
   - text: License
