@@ -2,7 +2,7 @@
 title: "Structural Equation Modeling Approach"
 output:
   workflowr::wflow_html:
-    toc: false
+    toc: true
 editor_options:
   chunk_output_type: console
 ---
@@ -192,6 +192,8 @@ d <- d %>% cbind(dscrscore, dspc) %>%  na.omit()
 
 ```
 
+In the [main page](docs/index.html) of this project, the data and research question were presented. Here, we go over SEM modeling of the data.
+
 # Modeling Strategy
 
 Perception of discrimination seems to be a latent formative construct; the various forms of discriminations one experiences *add up* to form that experience. Hence, at a first attempt, a latent variable of `discrimination` was included as a formative factor. However, due to sparsity of the responses on discrimination items, they reduced model fit while adding to model complexity. Thus, this formative factor was excluded from further modeling and two alternatives (using all discrimination items, and the sum score of the items) were used as exogenous variables.
@@ -239,7 +241,7 @@ Model.1 <- "
 o1 <- l_o(Model.1, d)
 ```
 
-The model fit is shown in Figure 1. However, the model did not fit well: $\chi^2 = `r round(o1$ch,2)`$, $df = `r o1$df`$, and most importantly, $RMSEA = `r o1$rmsea`$, $CFI = `r o1$cfi`$, $SRMR = `r o1$srmr`$, and $TLI = `r o1$tli`$. The model fit of Model 1 is shown in Table 1.
+The model fit is shown in Figure 1. However, the model did not fit well: $\chi^2 = `r round(o1$ch,2)`$, $df = `r o1$df`$, and most importantly, $RMSEA = `r o1$rmsea`$, $CFI = `r o1$cfi`$, $SRMR = `r o1$srmr`$, and $TLI = `r o1$tli`$.
 
 
 ```{r fig1, results="asis", echo=FALSE, fig.cap="Model 1", fig.scap="Model 1"}
@@ -248,17 +250,12 @@ p(o1$f)
 
 ```
 
+The model fit of Model 1 is shown below:
 
-```{r tbl1, results="asis", echo=FALSE, include=TRUE}
-
-kable(rbind(o1$l, o1$r, o1$thr),
-      "html",
-      caption = "Estimated parameters of model 1",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
+```{r, echo=TRUE, include=TRUE}
+o1$f %>% summary()
 ```
+
 
 
 ## Model 2
@@ -299,7 +296,7 @@ Model.2 <- "
 o2 <- l_o(Model.2, d)
 ```
 
-This model, shown in Figure 2, had a decent fit ($\chi^2 = `r o2$ch`$, $df = `r o2$df`$, $RMSEA = `r o2$rmsea`$, $CFI = `r o2$cfi`$, $SRMR = `r o2$srmr`$, and $TLI = `r o2$tli`$.) More specifically, the $\chi^2$ has improved dramatically, and other fit indeces have passed the conventional thresholds ($RMSEA < 0.05, CFI > 0.90, SRMR < 0.08,$ and $TLI > 0.90$). The parameter estimates of Model 2 is reported in Tables 2 and 3.
+This model, shown in Figure 2, had a decent fit ($\chi^2 = `r o2$ch`$, $df = `r o2$df`$, $RMSEA = `r o2$rmsea`$, $CFI = `r o2$cfi`$, $SRMR = `r o2$srmr`$, and $TLI = `r o2$tli`$.) More specifically, the $\chi^2$ has improved dramatically, and other fit indeces have passed the conventional thresholds ($RMSEA < 0.05, CFI > 0.90, SRMR < 0.08,$ and $TLI > 0.90$).
 
 
 ```{r fig2, results="asis", echo=FALSE, fig.cap="Model 2", fig.scap="Model 2"}
@@ -308,34 +305,11 @@ p(o2$f)
 
 ```
 
-```{r, echo=TRUE, include=FALSE}
-o2$f %>% summary() %>% print()
+The parameter estimates of Model 2 are as follows:
+
+```{r, echo=TRUE, include=TRUE}
+o2$f %>% summary()
 ```
-
-```{r tbl2, results="asis", echo=FALSE, include=TRUE}
-
-kable(rbind(o2$l, o2$thr),
-      "html",
-      caption = "Estimated parameters of model 2 (loadings and thresholds)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
-```
-
-
-
-```{r tbl3, results="asis", echo=FALSE, include=TRUE}
-
-kable(rbind(o2$r),
-      "html",
-      caption = "Estimated parameters of model 2 (regressions)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
-```
-
 
 ## Model 3
 
@@ -388,69 +362,11 @@ p(o3$f, 0.00001)
 
 ```
 
+The fit of Model 3 is as follows:
 
-```r rbind(o3$l, o2$thr)```
-
-```{r tbl4, results="asis", echo=FALSE, include=TRUE}
-
-kable(rbind(o3$l, o2$thr),
-      "html",
-      caption = "Estimated parameters of model 3 (loadings and thresholds)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
+```{r, echo=TRUE, include=TRUE}
+o3$f %>% summary()
 ```
-
-
-```{r tbl5, results="asis", echo=FALSE, include=TRUE}
-
-kable(o3$PolHope,
-      "html",
-      caption = "Estimated parameters of model 3 (regressions of Political Hope)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
-```
-
-
-```{r tbl6, results="asis", echo=FALSE, include=TRUE}
-
-kable(o3$SocTrst,
-      "html",
-      caption = "Estimated parameters of model 3 (regressions of Social Trust)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
-```
-
-
-```{r tbl7, results="asis", echo=FALSE, include=TRUE}
-
-kable(o3$PolTrst,
-      "html",
-      caption = "Estimated parameters of model 3 (regressions of Political Trust)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
-```
-
-
-```{r tbl8, results="asis", echo=FALSE, include=TRUE}
-
-kable(o3$PolPess,
-      "html",
-      caption = "Estimated parameters of model 3 (regressions of Political pessimism)",
-      label = "l",
-      booktabs = T,
-      digits = 2) #%>%
-  # kable_styling(latex_options="scale_down")
-```
-
-
 
 # Discussion
 

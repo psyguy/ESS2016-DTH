@@ -20,7 +20,7 @@ Among the myriad of factors involved in trust in others (including politicians) 
 This study, based on the 8^th^ round of the European Social Survey (ESS) data (doi: [10.21338/nsd-ess8-2016](https://www.doi.org/10.21338/nsd-ess8-2016)), investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other---and how.
 
 
-# Research Hypothesis
+# Research Question
 
 Is there a link between the perception of discrimination and trust in others and hope in the effectiveness of participation in politics?
 
@@ -28,33 +28,6 @@ Is there a link between the perception of discrimination and trust in others and
 # Material
 
 The original dataset included responses from 23 European countries participating in @noauthor_european_2017. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and "don't know") were excluded from the dataset (making $N = 40400$).
-
-```{r, echo=TRUE}
-Model.1 <- "
-
-    # 1. latent variable definitions
-       PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
-       SocTrst =~ NA*ppltrst + pplfair + pplhlp
-       PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
-       
-    # 2. regressions
-       PolHope + SocTrst + PolTrst ~ dscrscore + polintr
-       
-    # 3. (co)variances
-       PolHope ~~ 1*PolHope
-       SocTrst ~~ 1*SocTrst
-       PolTrst ~~ 1*PolTrst
-       
-       PolHope ~~ SocTrst + PolTrst
-       SocTrst ~~ PolTrst
-       
-    # 4. intercepts
-       psppsgva + actrolga + psppipla + cptppola ~ 1
-       ppltrst + pplfair + pplhlp ~ 1
-       trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
-       
-   "
-```
 
 The items about discrimination were binary, including various forms of discrimination that people can experience. These items include `dscrrce`, `dscrntn`, `dscrrlg`, `dscrlng`, `dscretn`, `dscrage`, `dscrgnd`, `dscrsex`, `dscrdsb`, and `dscroth`. To summarize these items, another item (i.e., `dscrscore`) was added to the dataset which was defined as some of the responses on the indicators of discrimination. Hence, experiencing multiple forms of discrimination increases the total score on the perception of discrimination.
 
@@ -64,6 +37,6 @@ The items about hope in politics (i.e., `psppsgva`, `actrolga`, `psppipla`, and 
 
 Since the attitudes towards politics and politicians depend on whether the responder is interested in politics or not, the item indicating interest in politics (i.e., `polint`) was also added. `polint` was on a 4-level Likert scale and reverse-coded (1 to 4, for "Very interested" to "Not at all interested"). Hence, the coding was reversed in this study.
 
-# Analysis
+# Analyses
 
-I use two approached to answer the research question: latent variable modeling by means of [structural equation modeling](docs/SEM-approach.html), and network analysis.
+I use two approached to answer the research question: latent variable modeling by means of [structural equation modeling](docs/SEM-approach.html), and network analysis that will follow.
