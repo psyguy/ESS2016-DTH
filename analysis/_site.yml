@@ -3,12 +3,8 @@ output_dir: ../docs
 navbar:
   title: "Discrimination, Trust, and Hope in Political Change in Europe 2016"
   left:
-  - text: Home
-    href: sem-report.html
-  - text: About
-    href: about.html
-  - text: License
-    href: license.html
+  - text: SEM Analysis
+    href: SEM-approach.html
 output:
   workflowr::wflow_html:
     toc: yes

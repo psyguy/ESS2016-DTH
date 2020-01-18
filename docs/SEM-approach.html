@@ -1,0 +1,5657 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Structural Equation Modeling Approach</title>
+
+<script src="site_libs/jquery-1.11.3/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/cosmo.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/textmate.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
+
+<style type="text/css">code{white-space: pre;}</style>
+<style type="text/css">
+  pre:not([class]) {
+    background-color: white;
+  }
+</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
+  }
+}
+</script>
+
+
+
+<style type="text/css">
+h1 {
+  font-size: 34px;
+}
+h1.title {
+  font-size: 38px;
+}
+h2 {
+  font-size: 30px;
+}
+h3 {
+  font-size: 24px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 16px;
+}
+h6 {
+  font-size: 12px;
+}
+.table th:not([align]) {
+  text-align: left;
+}
+</style>
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+code {
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+</style>
+
+
+<style type="text/css">
+/* padding for bootstrap navbar */
+body {
+  padding-top: 51px;
+  padding-bottom: 40px;
+}
+/* offset scroll position for anchor links (for fixed navbar)  */
+.section h1 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h2 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h3 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h4 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h5 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.section h6 {
+  padding-top: 56px;
+  margin-top: -56px;
+}
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #ffffff;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script>
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.parent().addClass('active');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Discrimination, Trust, and Hope in Political Change in Europe 2016</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="SEM-approach.html">SEM Analysis</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<!-- Add a small amount of space between sections. -->
+<style type="text/css">
+div.section {
+  padding-top: 12px;
+}
+</style>
+
+<div class="fluid-row" id="header">
+
+
+
+<h1 class="title toc-ignore">Structural Equation Modeling Approach</h1>
+
+</div>
+
+
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
+</button>
+</p>
+<div id="workflowr-report" class="collapse">
+<ul class="nav nav-tabs">
+<li class="active">
+<a data-toggle="tab" href="#summary">Summary</a>
+</li>
+<li>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
+</li>
+<li>
+<a data-toggle="tab" href="#versions">Past versions</a>
+</li>
+</ul>
+<div class="tab-content">
+<div id="summary" class="tab-pane fade in active">
+<p>
+<strong>Last updated:</strong> 2020-01-18
+</p>
+<p>
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
+</p>
+<p>
+<strong>Knit directory:</strong> <code>ESS2016-DTH/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
+</p>
+<p>
+This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis was created with <a
+  href="https://github.com/jdblischak/workflowr">workflowr</a> (version 1.6.0). The <em>Checks</em> tab describes the reproducibility checks that were applied when the results were created. The <em>Past versions</em> tab lists the development history.
+</p>
+<hr>
+</div>
+<div id="checks" class="tab-pane fade">
+<div id="workflowr-checks" class="panel-group">
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
+</p>
+</div>
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The R Markdown is untracked by Git. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
+</p>
+</div>
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200116code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200116)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200116code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200116)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtreeecb0695e7ff25cd68ed11834d0014f5e47bbc774targetblankecb0695a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/psyguy/ESS2016-DTH/tree/ecb0695e7ff25cd68ed11834d0014f5e47bbc774" target="_blank">ecb0695</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtreeecb0695e7ff25cd68ed11834d0014f5e47bbc774targetblankecb0695a" class="panel-collapse collapse">
+<div class="panel-body">
+<p>
+Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
+</p>
+<pre><code>
+Ignored files:
+    Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  SEM-analysis.Rmd
+    Untracked:  analysis/SEM-approach.Rmd
+    Untracked:  data/ess2016_selected.csv
+    Untracked:  figure/
+
+Unstaged changes:
+    Modified:   README.md
+    Modified:   analysis/_site.yml
+    Modified:   analysis/index.Rmd
+
+</code></pre>
+<p>
+Note that any generated files, e.g. HTML, png, CSS, etc., are not included in this status report because it is ok for generated content to have uncommitted changes.
+</p>
+</div>
+</div>
+</div>
+</div>
+<hr>
+</div>
+<div id="versions" class="tab-pane fade">
+<p>
+There are no past versions. Publish this analysis with <code>wflow_publish()</code> to start tracking its development.
+</p>
+<hr>
+</div>
+</div>
+</div>
+<div id="modeling-strategy" class="section level1">
+<h1>Modeling Strategy</h1>
+<p>Perception of discrimination seems to be a latent formative construct; the various forms of discriminations one experiences <em>add up</em> to form that experience. Hence, at a first attempt, a latent variable of <code>discrimination</code> was included as a formative factor. However, due to sparsity of the responses on discrimination items, they reduced model fit while adding to model complexity. Thus, this formative factor was excluded from further modeling and two alternatives (using all discrimination items, and the sum score of the items) were used as exogenous variables.</p>
+<p>Since the social and political trust could stem from distinct constructs, they were modeled by two latent variables: <code>SocTrst</code> and <code>PolTrst</code>, respectively. However, since they both share an element of “trust,” these factors were allowed to correlate.</p>
+<p>The latent variable <code>PolHope</code> was also included and the items regarding hope in efficacy of political actions loaded on it.</p>
+<p>The interest in politics (i.e., <code>polint</code>) was used as an exogenous variable, upon which the latent variables can be regressed. Because of the non-normality of the responses, the intercept of items were included in the models (not shown in the outputs).</p>
+<p>All latent variances were fixed to one. The SEM analysis was done using R package <code>lavaan</code>, and the models were visualized using package <code>semPlot</code>.</p>
+<div id="model-1" class="section level2">
+<h2>Model 1</h2>
+<p>The initial model had three latent variables, viz., <code>SocTrst</code>, <code>PolTrst</code>, and <code>PolHope</code> and the covariances were also included in the model.</p>
+<pre class="r"><code>Model.1 &lt;- &quot;
+
+    # 1. latent variable definitions
+       PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+       SocTrst =~ NA*ppltrst + pplfair + pplhlp
+       PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+       
+    # 2. regressions
+       PolHope + SocTrst + PolTrst ~ dscrscore + polintr
+       
+    # 3. (co)variances
+       PolHope ~~ 1*PolHope
+       SocTrst ~~ 1*SocTrst
+       PolTrst ~~ 1*PolTrst
+       
+       PolHope ~~ SocTrst + PolTrst
+       SocTrst ~~ PolTrst
+       
+    # 4. intercepts
+       psppsgva + actrolga + psppipla + cptppola ~ 1
+       ppltrst + pplfair + pplhlp ~ 1
+       trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+       
+   &quot;</code></pre>
+<p>The model fit is shown in Figure 1. However, the model did not fit well: <span class="math inline">\(\chi^2 = 3.052231\times 10^{4}\)</span>, <span class="math inline">\(df = 81\)</span>, and most importantly, <span class="math inline">\(RMSEA = 0.096\)</span>, <span class="math inline">\(CFI = 0.92\)</span>, <span class="math inline">\(SRMR = 0.086\)</span>, and <span class="math inline">\(TLI = 0.736\)</span>. The model fit of Model 1 is shown in Table 1.</p>
+<div class="figure" style="text-align: center">
+<img src="figure/SEM-approach.Rmd/fig1-1.png" alt="Model 1" width="672" />
+<p class="caption">
+Model 1
+</p>
+</div>
+<table>
+<caption>
+Estimated parameters of model 1
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+269.69
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+0.77
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+213.56
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.70
+</td>
+<td style="text-align:right;">
+0.71
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+330.14
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:right;">
+0.68
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+204.22
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.67
+</td>
+<td style="text-align:right;">
+0.69
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+ppltrst
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+128.78
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+1.80
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+pplfair
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+126.99
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.47
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+pplhlp
+</td>
+<td style="text-align:right;">
+1.46
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+115.88
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.44
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprl
+</td>
+<td style="text-align:right;">
+2.07
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+153.42
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+2.04
+</td>
+<td style="text-align:right;">
+2.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstlgl
+</td>
+<td style="text-align:right;">
+1.92
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+134.21
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+1.95
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplc
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+112.82
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+1.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplt
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+149.07
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.95
+</td>
+<td style="text-align:right;">
+2.00
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprt
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+145.59
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+1.86
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-6.54
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.08
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.64
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+107.74
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.63
+</td>
+<td style="text-align:right;">
+0.66
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-13.62
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+<td style="text-align:right;">
+-0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+36.79
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.19
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-20.38
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+52.04
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.28
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="model-2" class="section level2">
+<h2>Model 2</h2>
+<p>The modification indices of Model 1 suggested that all the items of political trust and political be allowed to covary. This, together with poor fit of Model 1, was an indication that those items can load on another factor. Hence, a forth factor was added to explain the remaining covariance of these items. Based on the loadings, it was called <em>Political Pessimism</em> (coded as <code>PolPess</code>), that models a general the positive attitude towards politics.</p>
+<pre class="r"><code>Model.2 &lt;- &quot;
+
+    # 1. latent variable definitions
+       PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+       SocTrst =~ NA*ppltrst + pplfair + pplhlp
+       PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+       PolPess =~ NA*psppsgva + actrolga + psppipla + cptppola +
+         trstprl + trstlgl + trstplc + trstplt + trstprt
+       
+    # 2. regressions
+       PolHope + SocTrst + PolTrst + PolPess ~ dscrscore + polintr
+       
+    # 3. (co)variances
+       PolHope ~~ 1*PolHope
+       SocTrst ~~ 1*SocTrst
+       PolTrst ~~ 1*PolTrst
+       PolPess ~~ 1*PolPess
+       
+       PolHope ~~ SocTrst + PolTrst
+       SocTrst ~~ PolTrst
+       
+    # 4. intercepts
+       psppsgva + actrolga + psppipla + cptppola ~ 1
+       ppltrst + pplfair + pplhlp ~ 1
+       trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+       
+   &quot;</code></pre>
+<p>This model, shown in Figure 2, had a decent fit (<span class="math inline">\(\chi^2 = 2795.73\)</span>, <span class="math inline">\(df = 70\)</span>, <span class="math inline">\(RMSEA = 0.031\)</span>, <span class="math inline">\(CFI = 0.993\)</span>, <span class="math inline">\(SRMR = 0.035\)</span>, and <span class="math inline">\(TLI = 0.954\)</span>.) More specifically, the <span class="math inline">\(\chi^2\)</span> has improved dramatically, and other fit indeces have passed the conventional thresholds (<span class="math inline">\(RMSEA &lt; 0.05, CFI &gt; 0.90, SRMR &lt; 0.08,\)</span> and <span class="math inline">\(TLI &gt; 0.90\)</span>). The parameter estimates of Model 2 is reported in Tables 2 and 3.</p>
+<div class="figure" style="text-align: center">
+<img src="figure/SEM-approach.Rmd/fig2-1.png" alt="Model 2" width="672" />
+<p class="caption">
+Model 2
+</p>
+</div>
+<table>
+<caption>
+Estimated parameters of model 2 (loadings and thresholds)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+221.92
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0.83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+24.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+198.74
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+22.30
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+ppltrst
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+128.44
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.74
+</td>
+<td style="text-align:right;">
+1.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+pplfair
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+126.96
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.47
+</td>
+<td style="text-align:right;">
+1.52
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+pplhlp
+</td>
+<td style="text-align:right;">
+1.46
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+116.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.44
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprl
+</td>
+<td style="text-align:right;">
+2.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+154.33
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.02
+</td>
+<td style="text-align:right;">
+2.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstlgl
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+134.57
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+1.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplc
+</td>
+<td style="text-align:right;">
+1.37
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+112.79
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.34
+</td>
+<td style="text-align:right;">
+1.39
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplt
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+150.75
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.96
+</td>
+<td style="text-align:right;">
+2.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprt
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+147.34
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.86
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-1.12
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:right;">
+-0.76
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-92.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.78
+</td>
+<td style="text-align:right;">
+-0.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-8.79
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+<td style="text-align:right;">
+-0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:right;">
+-0.76
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-95.96
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.77
+</td>
+<td style="text-align:right;">
+-0.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprl
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+1.93
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstlgl
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+4.35
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplc
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+10.02
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+<td style="text-align:right;">
+0.19
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplt
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+5.42
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprt
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+3.78
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>
+Estimated parameters of model 2 (regressions)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.19
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-17.13
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+34.19
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-13.63
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+<td style="text-align:right;">
+-0.12
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+36.79
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-19.10
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.20
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+41.04
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+0.30
+</td>
+<td style="text-align:right;">
+0.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrscore
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-15.20
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+-0.58
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-56.07
+</td>
+<td style="text-align:right;">
+0
+</td>
+<td style="text-align:right;">
+-0.60
+</td>
+<td style="text-align:right;">
+-0.56
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="model-3" class="section level2">
+<h2>Model 3</h2>
+<p>Although Model 2 shows a good fit, one might want to see whether different forms of discrimination have different effects in the model. To do so, instead of usnig the aggregated <code>dscrscore</code> in Model 2, all the indicators of discrimination were included in Model 3.</p>
+<pre class="r"><code>Model.3 &lt;- &quot;
+
+    # 1. latent variable definitions
+       PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+       SocTrst =~ NA*ppltrst + pplfair + pplhlp
+       PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+       PolPess =~ NA*psppsgva + actrolga + psppipla + cptppola +
+         trstprl + trstlgl + trstplc + trstplt + trstprt
+       
+    # 2. regressions
+       PolHope + SocTrst + PolTrst + PolPess ~ dscrrce + dscrntn + dscrrlg +
+                                               dscrlng + dscretn + dscrage + 
+                                               dscrgnd + dscrsex + dscrdsb +
+                                               dscroth + polintr
+       
+    # 3. (co)variances
+       PolHope ~~ 1*PolHope
+       SocTrst ~~ 1*SocTrst
+       PolTrst ~~ 1*PolTrst
+       PolPess ~~ 1*PolPess
+       
+       PolHope ~~ SocTrst + PolTrst
+       SocTrst ~~ PolTrst
+       
+    # 4. intercepts
+       psppsgva + actrolga + psppipla + cptppola ~ 1
+       ppltrst + pplfair + pplhlp ~ 1
+       trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+   &quot;</code></pre>
+<p>This model had an even better fit (<span class="math inline">\(\chi^2 = 2598.28\)</span>, <span class="math inline">\(df = 142\)</span>, <span class="math inline">\(RMSEA = 0.021\)</span>, <span class="math inline">\(CFI = 0.993\)</span>, <span class="math inline">\(SRMR = 0.035\)</span>, and <span class="math inline">\(TLI = 0.982\)</span>.) The <span class="math inline">\(\chi^2\)</span> has improved slightly, and other fit indeces have been further improved. However, this improvement might be negligible; the degrees of freedom of Model 3 is much higher than that of Model 2, and the fit measures are improved by higher df.</p>
+<p>The parameter estimates of Model 3 is reported in Tables 4-8 and is the graph is shown in Figure 3. For the sake of readability, the edges weights are removed in the plot.</p>
+<div class="figure" style="text-align: center">
+<img src="figure/SEM-approach.Rmd/fig3-1.png" alt="Model 3" width="672" />
+<p class="caption">
+Model 3
+</p>
+</div>
+<p><code>r rbind(o3$l, o2$thr)</code></p>
+<table>
+<caption>
+Estimated parameters of model 3 (loadings and thresholds)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+220.14
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.81
+</td>
+<td style="text-align:right;">
+0.82
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+23.86
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+196.96
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.84
+</td>
+<td style="text-align:right;">
+0.85
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+22.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.29
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+ppltrst
+</td>
+<td style="text-align:right;">
+1.76
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+128.47
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.73
+</td>
+<td style="text-align:right;">
+1.79
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+pplfair
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+126.85
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.47
+</td>
+<td style="text-align:right;">
+1.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+pplhlp
+</td>
+<td style="text-align:right;">
+1.46
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+116.00
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.44
+</td>
+<td style="text-align:right;">
+1.49
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprl
+</td>
+<td style="text-align:right;">
+2.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+154.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+2.02
+</td>
+<td style="text-align:right;">
+2.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstlgl
+</td>
+<td style="text-align:right;">
+1.91
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+134.80
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+1.94
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplc
+</td>
+<td style="text-align:right;">
+1.36
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+112.30
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.33
+</td>
+<td style="text-align:right;">
+1.38
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplt
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+150.98
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.96
+</td>
+<td style="text-align:right;">
+2.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprt
+</td>
+<td style="text-align:right;">
+1.88
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+147.46
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+1.85
+</td>
+<td style="text-align:right;">
+1.90
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-1.13
+</td>
+<td style="text-align:right;">
+0.26
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:right;">
+-0.76
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-91.97
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.78
+</td>
+<td style="text-align:right;">
+-0.75
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+-8.73
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.17
+</td>
+<td style="text-align:right;">
+-0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:right;">
+-0.76
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-95.68
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.77
+</td>
+<td style="text-align:right;">
+-0.74
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprl
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+1.86
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstlgl
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+4.44
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplc
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+9.16
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.12
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstplt
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+5.25
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+=~
+</td>
+<td style="text-align:left;">
+trstprt
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.02
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+<td style="text-align:right;">
+0.18
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+<td style="text-align:right;">
+1.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+<td style="text-align:right;">
+2.36
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppsgva
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+<td style="text-align:right;">
+3.26
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+<td style="text-align:right;">
+1.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+<td style="text-align:right;">
+1.98
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+<td style="text-align:right;">
+2.91
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+actrolga
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+<td style="text-align:right;">
+3.62
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+<td style="text-align:right;">
+1.41
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+<td style="text-align:right;">
+2.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+psppipla
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+<td style="text-align:right;">
+3.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t1
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+<td style="text-align:right;">
+0.92
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t2
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+<td style="text-align:right;">
+1.89
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t3
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+<td style="text-align:right;">
+2.86
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+cptppola
+</td>
+<td style="text-align:left;">
+|
+</td>
+<td style="text-align:left;">
+t4
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+NA
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+<td style="text-align:right;">
+3.61
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>
+Estimated parameters of model 3 (regressions of Political Hope)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrce
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+1.95
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrntn
+</td>
+<td style="text-align:right;">
+-0.62
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-11.88
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.72
+</td>
+<td style="text-align:right;">
+-0.51
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrlg
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-2.68
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.22
+</td>
+<td style="text-align:right;">
+-0.03
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrlng
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-2.06
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-0.26
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscretn
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.46
+</td>
+<td style="text-align:right;">
+0.65
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrage
+</td>
+<td style="text-align:right;">
+-0.44
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-7.50
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.56
+</td>
+<td style="text-align:right;">
+-0.33
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrgnd
+</td>
+<td style="text-align:right;">
+0.14
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+2.45
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+0.25
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrsex
+</td>
+<td style="text-align:right;">
+0.17
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+1.93
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrdsb
+</td>
+<td style="text-align:right;">
+-0.26
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-3.93
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.40
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscroth
+</td>
+<td style="text-align:right;">
+-0.41
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-9.20
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.49
+</td>
+<td style="text-align:right;">
+-0.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolHope
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.42
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+34.12
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.40
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>
+Estimated parameters of model 3 (regressions of Social Trust)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrce
+</td>
+<td style="text-align:right;">
+-0.27
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-4.59
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.39
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrntn
+</td>
+<td style="text-align:right;">
+-0.38
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-7.68
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.47
+</td>
+<td style="text-align:right;">
+-0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrlg
+</td>
+<td style="text-align:right;">
+-0.10
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-2.15
+</td>
+<td style="text-align:right;">
+0.03
+</td>
+<td style="text-align:right;">
+-0.19
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrlng
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+3.15
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscretn
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-0.94
+</td>
+<td style="text-align:right;">
+0.35
+</td>
+<td style="text-align:right;">
+-0.19
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrage
+</td>
+<td style="text-align:right;">
+-0.26
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-4.79
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.37
+</td>
+<td style="text-align:right;">
+-0.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrgnd
+</td>
+<td style="text-align:right;">
+0.20
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+3.69
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrsex
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+0.62
+</td>
+<td style="text-align:right;">
+0.53
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+<td style="text-align:right;">
+0.24
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrdsb
+</td>
+<td style="text-align:right;">
+-0.41
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-6.38
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.53
+</td>
+<td style="text-align:right;">
+-0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscroth
+</td>
+<td style="text-align:right;">
+-0.31
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-7.75
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.39
+</td>
+<td style="text-align:right;">
+-0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+SocTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.22
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+36.57
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>
+Estimated parameters of model 3 (regressions of Political Trust)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrce
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+0.76
+</td>
+<td style="text-align:right;">
+0.45
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrntn
+</td>
+<td style="text-align:right;">
+-0.32
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-6.93
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.41
+</td>
+<td style="text-align:right;">
+-0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrlg
+</td>
+<td style="text-align:right;">
+-0.22
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-5.15
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.31
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrlng
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+1.77
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+-0.01
+</td>
+<td style="text-align:right;">
+0.21
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscretn
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-3.16
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.29
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrage
+</td>
+<td style="text-align:right;">
+-0.38
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-7.44
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.48
+</td>
+<td style="text-align:right;">
+-0.28
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrgnd
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-1.72
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+-0.19
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrsex
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+<td style="text-align:right;">
+-0.06
+</td>
+<td style="text-align:right;">
+0.95
+</td>
+<td style="text-align:right;">
+-0.16
+</td>
+<td style="text-align:right;">
+0.15
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrdsb
+</td>
+<td style="text-align:right;">
+-0.32
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-5.41
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.43
+</td>
+<td style="text-align:right;">
+-0.20
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscroth
+</td>
+<td style="text-align:right;">
+-0.49
+</td>
+<td style="text-align:right;">
+0.04
+</td>
+<td style="text-align:right;">
+-12.98
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.57
+</td>
+<td style="text-align:right;">
+-0.42
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolTrst
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+41.09
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+0.31
+</td>
+<td style="text-align:right;">
+0.34
+</td>
+</tr>
+</tbody>
+</table>
+<table>
+<caption>
+Estimated parameters of model 3 (regressions of Political pessimism)
+</caption>
+<thead>
+<tr>
+<th style="text-align:left;">
+lhs
+</th>
+<th style="text-align:left;">
+op
+</th>
+<th style="text-align:left;">
+rhs
+</th>
+<th style="text-align:right;">
+est
+</th>
+<th style="text-align:right;">
+se
+</th>
+<th style="text-align:right;">
+z
+</th>
+<th style="text-align:right;">
+pvalue
+</th>
+<th style="text-align:right;">
+ci.lower
+</th>
+<th style="text-align:right;">
+ci.upper
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrce
+</td>
+<td style="text-align:right;">
+-0.18
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-2.68
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.31
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrntn
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-3.53
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.33
+</td>
+<td style="text-align:right;">
+-0.09
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrrlg
+</td>
+<td style="text-align:right;">
+-0.14
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-2.71
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-0.24
+</td>
+<td style="text-align:right;">
+-0.04
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrlng
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-0.99
+</td>
+<td style="text-align:right;">
+0.32
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscretn
+</td>
+<td style="text-align:right;">
+-0.05
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-0.78
+</td>
+<td style="text-align:right;">
+0.43
+</td>
+<td style="text-align:right;">
+-0.19
+</td>
+<td style="text-align:right;">
+0.08
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrage
+</td>
+<td style="text-align:right;">
+0.10
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+1.61
+</td>
+<td style="text-align:right;">
+0.11
+</td>
+<td style="text-align:right;">
+-0.02
+</td>
+<td style="text-align:right;">
+0.23
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrgnd
+</td>
+<td style="text-align:right;">
+-0.51
+</td>
+<td style="text-align:right;">
+0.06
+</td>
+<td style="text-align:right;">
+-8.80
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.62
+</td>
+<td style="text-align:right;">
+-0.40
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrsex
+</td>
+<td style="text-align:right;">
+-0.31
+</td>
+<td style="text-align:right;">
+0.09
+</td>
+<td style="text-align:right;">
+-3.40
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.49
+</td>
+<td style="text-align:right;">
+-0.13
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscrdsb
+</td>
+<td style="text-align:right;">
+-0.21
+</td>
+<td style="text-align:right;">
+0.07
+</td>
+<td style="text-align:right;">
+-2.97
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.35
+</td>
+<td style="text-align:right;">
+-0.07
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+dscroth
+</td>
+<td style="text-align:right;">
+-0.43
+</td>
+<td style="text-align:right;">
+0.05
+</td>
+<td style="text-align:right;">
+-9.04
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.53
+</td>
+<td style="text-align:right;">
+-0.34
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+PolPess
+</td>
+<td style="text-align:left;">
+~
+</td>
+<td style="text-align:left;">
+polintr
+</td>
+<td style="text-align:right;">
+-0.58
+</td>
+<td style="text-align:right;">
+0.01
+</td>
+<td style="text-align:right;">
+-55.59
+</td>
+<td style="text-align:right;">
+0.00
+</td>
+<td style="text-align:right;">
+-0.60
+</td>
+<td style="text-align:right;">
+-0.56
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="discussion" class="section level1">
+<h1>Discussion</h1>
+<p>Due to poor fit, Model 1 is not a good abstraction of the data. Hence, the discussion focuses on Models 2 and 3.</p>
+<p>Model 2 shows that discrimination (if treated as a whole) negatively affects all latent factors, but the effect is small. Interestingly, interest in politics is negatively associated with political pessimism—those who show more interest in politics are less pessimistic (and more optimistic) about it. Social and political trust and political hope are all positively (and remarkably) manifested in the corresponding questions. In the same line, political pessimism is negatively associated with the belief that citizens can play an active role in politics (<code>actrolga</code>). The same goes for the belief that political systems allow citizens to partake in politics (<code>psppipla</code>), but at a smaller degree. Moreover, those with higher self-confidence in politics (that they can play a role in politics, <code>cptppola</code>) are much less pessimistic about politics.</p>
+<p>Finally, Model 3 gives limited additional insights (on top of Model 2) about the role of discrimination on the latent factors (as the loadings are rather small). However, it is very informative about the comorbidity of discriminations: minoritis tend to experience discriminations based on nationality (<code>dscrntn</code>), religion (<code>dscrrlg</code>), language (<code>dscrlng</code>), and ethnicity (<code>dscretn</code>).</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.2 (2019-12-12)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 18362)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+ [1] lavaan_0.6-5     semPlot_1.1.2    kutils_1.69      psych_1.8.12    
+ [5] kableExtra_1.1.0 knitr_1.26       qgraph_1.6.3     plyr_1.8.4      
+ [9] forcats_0.4.0    stringr_1.4.0    dplyr_0.8.3      purrr_0.3.3     
+[13] readr_1.3.1      tidyr_1.0.0      tibble_2.1.3     ggplot2_3.2.1   
+[17] tidyverse_1.2.1 
+
+loaded via a namespace (and not attached):
+  [1] minqa_1.2.4         colorspace_1.4-1    rjson_0.2.20       
+  [4] rprojroot_1.3-2     htmlTable_1.13.2    corpcor_1.6.9      
+  [7] base64enc_0.1-3     fs_1.3.1            rstudioapi_0.10    
+ [10] lubridate_1.7.4     xml2_1.2.2          splines_3.6.2      
+ [13] mnormt_1.5-5        glasso_1.11         zeallot_0.1.0      
+ [16] Formula_1.2-3       jsonlite_1.6        nloptr_1.2.1       
+ [19] workflowr_1.6.0     broom_0.5.2         cluster_2.1.0      
+ [22] png_0.1-7           regsem_1.3.9        compiler_3.6.2     
+ [25] httr_1.4.1          backports_1.1.5     assertthat_0.2.1   
+ [28] Matrix_1.2-18       lazyeval_0.2.2      cli_1.1.0          
+ [31] later_1.0.0         acepack_1.4.1       htmltools_0.4.0    
+ [34] tools_3.6.2         OpenMx_2.14.11      igraph_1.2.4.1     
+ [37] coda_0.19-3         gtable_0.3.0        glue_1.3.1         
+ [40] reshape2_1.4.3      Rcpp_1.0.3          carData_3.0-3      
+ [43] cellranger_1.1.0    vctrs_0.2.0         nlme_3.1-142       
+ [46] lisrelToR_0.1.4     xfun_0.11           lme4_1.1-21        
+ [49] openxlsx_4.1.3      rvest_0.3.5         ggm_2.3            
+ [52] lifecycle_0.1.0     gtools_3.8.1        XML_3.98-1.20      
+ [55] MASS_7.3-51.4       scales_1.0.0        BDgraph_2.62       
+ [58] hms_0.5.2           promises_1.1.0      parallel_3.6.2     
+ [61] huge_1.3.4          RColorBrewer_1.1-2  yaml_2.2.0         
+ [64] pbapply_1.4-2       gridExtra_2.3       rpart_4.1-15       
+ [67] latticeExtra_0.6-28 stringi_1.4.3       highr_0.8          
+ [70] sem_3.1-9           checkmate_1.9.4     boot_1.3-23        
+ [73] zip_2.0.4           truncnorm_1.0-8     rlang_0.4.1        
+ [76] pkgconfig_2.0.3     d3Network_0.5.2.1   Rsolnp_1.16        
+ [79] arm_1.10-1          evaluate_0.14       lattice_0.20-38    
+ [82] htmlwidgets_1.5.1   tidyselect_0.2.5    magrittr_1.5       
+ [85] R6_2.4.1            generics_0.0.2      Hmisc_4.3-0        
+ [88] pillar_1.4.2        haven_2.2.0         whisker_0.4        
+ [91] foreign_0.8-72      withr_2.1.2         rockchalk_1.8.144  
+ [94] survival_3.1-8      abind_1.4-5         nnet_7.3-12        
+ [97] modelr_0.1.5        crayon_1.3.4        fdrtool_1.2.15     
+[100] rmarkdown_1.17      jpeg_0.1-8.1        grid_3.6.2         
+[103] readxl_1.3.1        data.table_1.12.6   pbivnorm_0.6.0     
+[106] git2r_0.26.1        matrixcalc_1.0-3    digest_0.6.22      
+[109] webshot_0.5.1       mi_1.0              xtable_1.8-4       
+[112] httpuv_1.5.2        stats4_3.6.2        munsell_0.5.0      
+[115] viridisLite_0.3.0  </code></pre>
+</div>
+</div>
+
+
+<!-- Adjust MathJax settings so that all math formulae are shown using
+TeX fonts only; see
+http://docs.mathjax.org/en/latest/configuration.html.  This will make
+the presentation more consistent at the cost of the webpage sometimes
+taking slightly longer to load. Note that this only works because the
+footer is added to webpages before the MathJax javascript. -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    "HTML-CSS": { availableFonts: ["TeX"] }
+  });
+</script>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.header').parent('thead').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open')
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

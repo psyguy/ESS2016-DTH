@@ -8,4 +8,62 @@ editor_options:
   chunk_output_type: console
 ---
 
-Welcome to my research website.
+# Introduction
+
+Democracy literally means *rule by the people*, and hence it heavily relies on the citizens---what is to a government which lacks *rulers*?
+In democratic societies, citizens participate in their government by delegating their power to their representatives, i.e., politicians. However, not all delegates deserve trust, and not all people find other members of society---ordinary or powerful---trustworthy.
+
+On the other hand, the *ruler* (i.e., the citizens) should see a positive outlook of their ruling---that it is effective and can, hopefully, make a difference.
+
+Among the myriad of factors involved in trust in others (including politicians) and hope in the efficacy of citizens' participation in democracy, perception of discrimination might play a key role. If members of a society feel being discriminated against, they might tend to trust others (and their politicians) less, and see a less bright future in the horizon.
+
+This study, based on the 8^th^ round of the European Social Survey (ESS) data (doi: [10.21338/nsd-ess8-2016](https://www.doi.org/10.21338/nsd-ess8-2016)), investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other---and how.
+
+
+# Research Hypothesis
+
+Is there a link between the perception of discrimination and trust in others and hope in the effectiveness of participation in politics?
+
+
+# Material
+
+The original dataset included responses from 23 European countries participating in @noauthor_european_2017. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and "don't know") were excluded from the dataset (making $N = 40400$).
+
+```{r, echo=TRUE}
+Model.1 <- "
+
+    # 1. latent variable definitions
+       PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
+       SocTrst =~ NA*ppltrst + pplfair + pplhlp
+       PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
+       
+    # 2. regressions
+       PolHope + SocTrst + PolTrst ~ dscrscore + polintr
+       
+    # 3. (co)variances
+       PolHope ~~ 1*PolHope
+       SocTrst ~~ 1*SocTrst
+       PolTrst ~~ 1*PolTrst
+       
+       PolHope ~~ SocTrst + PolTrst
+       SocTrst ~~ PolTrst
+       
+    # 4. intercepts
+       psppsgva + actrolga + psppipla + cptppola ~ 1
+       ppltrst + pplfair + pplhlp ~ 1
+       trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
+       
+   "
+```
+
+The items about discrimination were binary, including various forms of discrimination that people can experience. These items include `dscrrce`, `dscrntn`, `dscrrlg`, `dscrlng`, `dscretn`, `dscrage`, `dscrgnd`, `dscrsex`, `dscrdsb`, and `dscroth`. To summarize these items, another item (i.e., `dscrscore`) was added to the dataset which was defined as some of the responses on the indicators of discrimination. Hence, experiencing multiple forms of discrimination increases the total score on the perception of discrimination.
+
+The items regarding trust belonged to two categories: trust in people in general (social trust, including `ppltrst`, `pplfair`, and `pplhlp`) and trust in politicians or political institutions (political trust, including `trstprl`, `trstlgl`, `trstplc`, `trstplt`, and `trstprt`). These items were discrete with 11 levels (0-10), thus treated as continuous. The items concerning political trust in the European Union and the United Nations were excluded, as they could be directly affected by responders' nationality and their perception of the role their country plays in---and how it is treated by---the EU and the UN.
+
+The items about hope in politics (i.e., `psppsgva`, `actrolga`, `psppipla`, and `cptppola`) were recorded as qualitative responses in 5-level Likert scales (e.g., *Not at all*, *A little able*, *Quite able*, *Very able*, and *Completely able*), hence treated as ordered responses.
+
+Since the attitudes towards politics and politicians depend on whether the responder is interested in politics or not, the item indicating interest in politics (i.e., `polint`) was also added. `polint` was on a 4-level Likert scale and reverse-coded (1 to 4, for "Very interested" to "Not at all interested"). Hence, the coding was reversed in this study.
+
+# Analysis
+
+I use two approached to answer the research question: latent variable modeling by means of [structural equation modeling](docs/SEM-approach.html), and network analysis.
