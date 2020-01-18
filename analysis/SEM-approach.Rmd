@@ -192,7 +192,7 @@ d <- d %>% cbind(dscrscore, dspc) %>%  na.omit()
 
 ```
 
-In the [main page](docs/index.html) of this project, the data and research question were presented. Here, we go over SEM modeling of the data.
+In the [home page](index.html) of this project, the data and research question were presented. Here, we go over SEM modeling of the data.
 
 # Modeling Strategy
 

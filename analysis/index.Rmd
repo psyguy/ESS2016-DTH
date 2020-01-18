@@ -39,4 +39,4 @@ Since the attitudes towards politics and politicians depend on whether the respo
 
 # Analyses
 
-I use two approached to answer the research question: latent variable modeling by means of [structural equation modeling](docs/SEM-approach.html), and network analysis that will follow.
+I use two approached to answer the research question: latent variable modeling by means of [structural equation modeling](SEM-approach.html), and network analysis that will follow.
