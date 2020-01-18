@@ -86,7 +86,7 @@ l_o <- function(m, d = d){
   o %>% return()
 }
 
-p <- function(f, edge.label.cex = 0.85){
+p <- function(f, latents, edge.label.cex = 0.85){
 
   semPaths(f,
            title = FALSE,
@@ -96,6 +96,7 @@ p <- function(f, edge.label.cex = 0.85){
            # edge.color = "black",
            # style = "mx",
            layout = "tree3",
+           latents = latents,
            optimizeLatRes = TRUE,
            intercepts = FALSE,
            edge.label.cex = edge.label.cex,
@@ -104,6 +105,7 @@ p <- function(f, edge.label.cex = 0.85){
            # centerLevels = FALSE,
            sizeLat=10,
            nCharNodes=15,
+           thresholds = FALSE,
            # groups = "latents",
            # fixedStyle=1,
            # freeStyle=1,
@@ -133,7 +135,7 @@ run.model.3 <- ifelse(exists("o3"), FALSE, TRUE)
 
 ```
 
-In the [home page](index.html) of this project, the data and research question were presented. Here, we go over SEM modeling of the data.
+In the [main page](index.html) of this project, the data and research question were presented. Here, we go over SEM modeling of the data.
 
 # Modeling Strategy
 
@@ -191,7 +193,7 @@ The model fit is shown in Figure 1. However, the model did not fit well: $\chi^2
 
 ```{r fig1, results="asis", echo=FALSE, fig.cap="Model 1", fig.scap="Model 1"}
 
-p(o1$f)
+p(o1$f, c("SocTrst", "PolHope", "PolTrst"))
 
 ```
 
@@ -259,7 +261,7 @@ This model, shown in Figure 2, had a decent fit ($\chi^2 = `r o2$ch`$, $df = `r 
 
 ```{r fig2, results="asis", echo=FALSE, fig.cap="Model 2", fig.scap="Model 2"}
 
-p(o2$f)
+p(o2$f, c("SocTrst", "PolHope", "PolPess", "PolTrst"))
 
 ```
 
@@ -328,7 +330,7 @@ The parameter estimates of Model 3 is reported in Tables 4-8 and is the graph is
 
 ```{r fig3, results="asis", echo=FALSE, fig.cap="Model 3", fig.scap="Model 3"}
 
-p(o3$f, 0.00001)
+p(o3$f, c("SocTrst", "PolHope", "PolPess", "PolTrst"), 0.00001)
 
 ```
 

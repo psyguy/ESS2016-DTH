@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "Discrimination, Trust, and Hope in Political Change in Europe 2016"
 site: workflowr::wflow_site
 output:
   workflowr::wflow_html:

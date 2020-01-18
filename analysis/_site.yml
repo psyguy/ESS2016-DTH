@@ -1,7 +1,7 @@
 name: "ESS2016-DTH"
 output_dir: ../docs
 navbar:
-  title: "Discrimination, Trust, & Hope in Politics in Europe 2016"
+  title: "Discrimination, Trust, Hope: EU 2016"
   left:
   - text: SEM Analysis
     href: SEM-approach.html
