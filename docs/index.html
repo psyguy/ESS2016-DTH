@@ -267,7 +267,7 @@ $(document).ready(function () {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Discrimination, Trust, and Hope in Political Change in Europe 2016</a>
+      <a class="navbar-brand" href="index.html">Discrimination, Trust, & Hope in Politics in Europe 2016</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -300,7 +300,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -309,7 +309,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -321,7 +321,7 @@ div.section {
 <strong>Last updated:</strong> 2020-01-18
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 2 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>ESS2016-DTH/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -337,29 +337,101 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree8322405dcb777705e9aab7be68a0e0507575ba95targetblank8322405a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/psyguy/ESS2016-DTH/tree/8322405dcb777705e9aab7be68a0e0507575ba95" target="_blank">8322405</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongEnvironmentstrongempty"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Environment:</strong> empty </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree8322405dcb777705e9aab7be68a0e0507575ba95targetblank8322405a" class="panel-collapse collapse">
+<div id="strongEnvironmentstrongempty" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! The global environment was empty. Objects defined in the global environment can affect the analysis in your R Markdown file in unknown ways. For reproduciblity it’s best to always run the code in an empty environment.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSeedstrongcodesetseed20200116code"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Seed:</strong> <code>set.seed(20200116)</code> </a>
+</p>
+</div>
+<div id="strongSeedstrongcodesetseed20200116code" class="panel-collapse collapse">
+<div class="panel-body">
+<p>The command <code>set.seed(20200116)</code> was run prior to running the code in the R Markdown file. Setting a seed ensures that any results that rely on randomness, e.g. subsampling or permutations, are reproducible.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongSessioninformationstrongrecorded"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Session information:</strong> recorded </a>
+</p>
+</div>
+<div id="strongSessioninformationstrongrecorded" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Recording the operating system, R version, and package versions is critical for reproducibility.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongCachestrongnone"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Cache:</strong> none </a>
+</p>
+</div>
+<div id="strongCachestrongnone" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Nice! There were no cached chunks for this analysis, so you can be confident that you successfully produced the results during this run.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongFilepathsstrongrelative"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>File paths:</strong> relative </a>
+</p>
+</div>
+<div id="strongFilepathsstrongrelative" class="panel-collapse collapse">
+<div class="panel-body">
+<p>Great job! Using relative paths to the files within your workflowr project makes it easier to run your code on other machines.</p>
+</div>
+</div>
+</div>
+<div class="panel panel-default">
+<div class="panel-heading">
+<p class="panel-title">
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree44b7a3217b43df4b8384dcc927ecb2b009c2dd50targetblank44b7a32a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/psyguy/ESS2016-DTH/tree/44b7a3217b43df4b8384dcc927ecb2b009c2dd50" target="_blank">44b7a32</a> </a>
+</p>
+</div>
+<div id="strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree44b7a3217b43df4b8384dcc927ecb2b009c2dd50targetblank44b7a32a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  output/d.RData
+    Untracked:  output/o1.RData
+    Untracked:  output/o2.RData
+    Untracked:  output/o3.RData
+
+Unstaged changes:
+    Modified:   analysis/SEM-approach.Rmd
+    Modified:   analysis/_site.yml
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -384,7 +456,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <p>Democracy literally means <em>rule by the people</em>, and hence it heavily relies on the citizens—what is to a government which lacks <em>rulers</em>? In democratic societies, citizens participate in their government by delegating their power to their representatives, i.e., politicians. However, not all delegates deserve trust, and not all people find other members of society—ordinary or powerful—trustworthy.</p>
 <p>On the other hand, the <em>ruler</em> (i.e., the citizens) should see a positive outlook of their ruling—that it is effective and can, hopefully, make a difference.</p>
 <p>Among the myriad of factors involved in trust in others (including politicians) and hope in the efficacy of citizens’ participation in democracy, perception of discrimination might play a key role. If members of a society feel being discriminated against, they might tend to trust others (and their politicians) less, and see a less bright future in the horizon.</p>
-<p>This study, based on the 8<sup>th</sup> round of the European Social Survey (ESS) data (doi: <a href="https://www.doi.org/10.21338/nsd-ess8-2016">10.21338/nsd-ess8-2016</a>), investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other—and how.</p>
+<p>This study, based on the 8<sup>th</sup> round of the <a href="https://www.europeansocialsurvey.org/">European Social Survey</a> (ESS) data (doi: <a href="https://www.doi.org/10.21338/nsd-ess8-2016">10.21338/nsd-ess8-2016</a>), investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other—and how.</p>
 </div>
 <div id="research-question" class="section level1">
 <h1>Research Question</h1>
@@ -392,7 +464,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 </div>
 <div id="material" class="section level1">
 <h1>Material</h1>
-<p>The original dataset included responses from 23 European countries participating in <span class="citation">@noauthor_european_2017</span>. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and “don’t know”) were excluded from the dataset (making <span class="math inline">\(N = 40400\)</span>).</p>
+<p>The original dataset included responses from 23 European countries participating in ESS 2016. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and “don’t know”) were excluded from the dataset (making <span class="math inline">\(N = 40400\)</span>).</p>
 <p>The items about discrimination were binary, including various forms of discrimination that people can experience. These items include <code>dscrrce</code>, <code>dscrntn</code>, <code>dscrrlg</code>, <code>dscrlng</code>, <code>dscretn</code>, <code>dscrage</code>, <code>dscrgnd</code>, <code>dscrsex</code>, <code>dscrdsb</code>, and <code>dscroth</code>. To summarize these items, another item (i.e., <code>dscrscore</code>) was added to the dataset which was defined as some of the responses on the indicators of discrimination. Hence, experiencing multiple forms of discrimination increases the total score on the perception of discrimination.</p>
 <p>The items regarding trust belonged to two categories: trust in people in general (social trust, including <code>ppltrst</code>, <code>pplfair</code>, and <code>pplhlp</code>) and trust in politicians or political institutions (political trust, including <code>trstprl</code>, <code>trstlgl</code>, <code>trstplc</code>, <code>trstplt</code>, and <code>trstprt</code>). These items were discrete with 11 levels (0-10), thus treated as continuous. The items concerning political trust in the European Union and the United Nations were excluded, as they could be directly affected by responders’ nationality and their perception of the role their country plays in—and how it is treated by—the EU and the UN.</p>
 <p>The items about hope in politics (i.e., <code>psppsgva</code>, <code>actrolga</code>, <code>psppipla</code>, and <code>cptppola</code>) were recorded as qualitative responses in 5-level Likert scales (e.g., <em>Not at all</em>, <em>A little able</em>, <em>Quite able</em>, <em>Very able</em>, and <em>Completely able</em>), hence treated as ordered responses.</p>
@@ -401,6 +473,51 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <div id="analyses" class="section level1">
 <h1>Analyses</h1>
 <p>I use two approached to answer the research question: latent variable modeling by means of <a href="SEM-approach.html">structural equation modeling</a>, and network analysis that will follow.</p>
+<br>
+<p>
+<button type="button" class="btn btn-default btn-workflowr btn-workflowr-sessioninfo" data-toggle="collapse" data-target="#workflowr-sessioninfo" style="display: block;">
+<span class="glyphicon glyphicon-wrench" aria-hidden="true"></span> Session information
+</button>
+</p>
+<div id="workflowr-sessioninfo" class="collapse">
+<pre class="r"><code>sessionInfo()</code></pre>
+<pre><code>R version 3.6.2 (2019-12-12)
+Platform: x86_64-w64-mingw32/x64 (64-bit)
+Running under: Windows 10 x64 (build 18362)
+
+Matrix products: default
+
+locale:
+[1] LC_COLLATE=English_United States.1252 
+[2] LC_CTYPE=English_United States.1252   
+[3] LC_MONETARY=English_United States.1252
+[4] LC_NUMERIC=C                          
+[5] LC_TIME=English_United States.1252    
+
+attached base packages:
+[1] stats     graphics  grDevices utils     datasets  methods   base     
+
+other attached packages:
+[1] forcats_0.4.0   stringr_1.4.0   dplyr_0.8.3     purrr_0.3.3    
+[5] readr_1.3.1     tidyr_1.0.0     tibble_2.1.3    ggplot2_3.2.1  
+[9] tidyverse_1.2.1
+
+loaded via a namespace (and not attached):
+ [1] tidyselect_0.2.5 xfun_0.11        haven_2.2.0      lattice_0.20-38 
+ [5] colorspace_1.4-1 vctrs_0.2.0      generics_0.0.2   htmltools_0.4.0 
+ [9] yaml_2.2.0       rlang_0.4.1      later_1.0.0      pillar_1.4.2    
+[13] withr_2.1.2      glue_1.3.1       modelr_0.1.5     readxl_1.3.1    
+[17] lifecycle_0.1.0  munsell_0.5.0    gtable_0.3.0     workflowr_1.6.0 
+[21] cellranger_1.1.0 rvest_0.3.5      evaluate_0.14    knitr_1.26      
+[25] httpuv_1.5.2     broom_0.5.2      Rcpp_1.0.3       promises_1.1.0  
+[29] backports_1.1.5  scales_1.0.0     jsonlite_1.6     fs_1.3.1        
+[33] hms_0.5.2        digest_0.6.22    stringi_1.4.3    grid_3.6.2      
+[37] rprojroot_1.3-2  cli_1.1.0        tools_3.6.2      magrittr_1.5    
+[41] lazyeval_0.2.2   crayon_1.3.4     pkgconfig_2.0.3  zeallot_0.1.0   
+[45] xml2_1.2.2       lubridate_1.7.4  assertthat_0.2.1 rmarkdown_1.17  
+[49] httr_1.4.1       rstudioapi_0.10  R6_2.4.1         nlme_3.1-142    
+[53] git2r_0.26.1     compiler_3.6.2  </code></pre>
+</div>
 </div>
 
 

@@ -343,7 +343,7 @@ div.tocify {
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">Discrimination, Trust, and Hope in Political Change in Europe 2016</a>
+      <a class="navbar-brand" href="index.html">Discrimination, Trust, & Hope in Politics in Europe 2016</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -376,7 +376,7 @@ div.section {
 
 <p>
 <button type="button" class="btn btn-default btn-workflowr btn-workflowr-report" data-toggle="collapse" data-target="#workflowr-report">
-<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span>
+<span class="glyphicon glyphicon-list" aria-hidden="true"></span> workflowr <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span>
 </button>
 </p>
 <div id="workflowr-report" class="collapse">
@@ -385,7 +385,7 @@ div.section {
 <a data-toggle="tab" href="#summary">Summary</a>
 </li>
 <li>
-<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> </a>
+<a data-toggle="tab" href="#checks"> Checks <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> </a>
 </li>
 <li>
 <a data-toggle="tab" href="#versions">Past versions</a>
@@ -397,7 +397,7 @@ div.section {
 <strong>Last updated:</strong> 2020-01-18
 </p>
 <p>
-<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 7 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 0
+<strong>Checks:</strong> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> 6 <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> 1
 </p>
 <p>
 <strong>Knit directory:</strong> <code>ESS2016-DTH/</code> <span class="glyphicon glyphicon-question-sign" aria-hidden="true" title="This is the local directory in which the code in this file was executed."> </span>
@@ -413,12 +413,12 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguptodate"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>R Markdown file:</strong> up-to-date </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRMarkdownfilestronguncommittedchanges"> <span class="glyphicon glyphicon-exclamation-sign text-danger" aria-hidden="true"></span> <strong>R Markdown file:</strong> uncommitted changes </a>
 </p>
 </div>
-<div id="strongRMarkdownfilestronguptodate" class="panel-collapse collapse">
+<div id="strongRMarkdownfilestronguncommittedchanges" class="panel-collapse collapse">
 <div class="panel-body">
-<p>Great! Since the R Markdown file has been committed to the Git repository, you know the exact version of the code that produced these results.</p>
+<p>The R Markdown file has unstaged changes. To know which version of the R Markdown file created these results, you’ll want to first commit it to the Git repo. If you’re still working on the analysis, you can ignore this warning. When you’re finished, you can run <code>wflow_publish</code> to commit the R Markdown file and build the HTML.</p>
 </div>
 </div>
 </div>
@@ -485,17 +485,29 @@ This reproducible <a href="http://rmarkdown.rstudio.com">R Markdown</a> analysis
 <div class="panel panel-default">
 <div class="panel-heading">
 <p class="panel-title">
-<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree8322405dcb777705e9aab7be68a0e0507575ba95targetblank8322405a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/psyguy/ESS2016-DTH/tree/8322405dcb777705e9aab7be68a0e0507575ba95" target="_blank">8322405</a> </a>
+<a data-toggle="collapse" data-parent="#workflowr-checks" href="#strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree44b7a3217b43df4b8384dcc927ecb2b009c2dd50targetblank44b7a32a"> <span class="glyphicon glyphicon-ok text-success" aria-hidden="true"></span> <strong>Repository version:</strong> <a href="https://github.com/psyguy/ESS2016-DTH/tree/44b7a3217b43df4b8384dcc927ecb2b009c2dd50" target="_blank">44b7a32</a> </a>
 </p>
 </div>
-<div id="strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree8322405dcb777705e9aab7be68a0e0507575ba95targetblank8322405a" class="panel-collapse collapse">
+<div id="strongRepositoryversionstrongahrefhttpsgithubcompsyguyESS2016DTHtree44b7a3217b43df4b8384dcc927ecb2b009c2dd50targetblank44b7a32a" class="panel-collapse collapse">
 <div class="panel-body">
 <p>
 Great! You are using Git for version control. Tracking code development and connecting the code version to the results is critical for reproducibility. The version displayed above was the version of the Git repository at the time these results were generated. <br><br> Note that you need to be careful to ensure that all relevant files for the analysis have been committed to Git prior to generating the results (you can use <code>wflow_publish</code> or <code>wflow_git_commit</code>). workflowr only checks the R Markdown file, but you know if there are other scripts or data files that it depends on. Below is the status of the Git repository when the results were generated:
 </p>
 <pre><code>
 Ignored files:
+    Ignored:    .Rhistory
     Ignored:    .Rproj.user/
+
+Untracked files:
+    Untracked:  output/d.RData
+    Untracked:  output/o1.RData
+    Untracked:  output/o2.RData
+    Untracked:  output/o3.RData
+
+Unstaged changes:
+    Modified:   analysis/SEM-approach.Rmd
+    Modified:   analysis/_site.yml
+    Modified:   analysis/index.Rmd
 
 </code></pre>
 <p>
@@ -523,7 +535,7 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
 <p>The latent variable <code>PolHope</code> was also included and the items regarding hope in efficacy of political actions loaded on it.</p>
 <p>The interest in politics (i.e., <code>polint</code>) was used as an exogenous variable, upon which the latent variables can be regressed. Because of the non-normality of the responses, the intercept of items were included in the models (not shown in the outputs).</p>
 <p>All latent variances were fixed to one. The SEM analysis was done using R package <code>lavaan</code>, and the models were visualized using package <code>semPlot</code>.</p>
-<div id="model-1" class="section level2">
+<div id="model-1" class="section level2 tabset tabset-fade">
 <h2>Model 1</h2>
 <p>The initial model had three latent variables, viz., <code>SocTrst</code>, <code>PolTrst</code>, and <code>PolHope</code> and the covariances were also included in the model.</p>
 <pre class="r"><code>Model.1 &lt;- &quot;
@@ -551,14 +563,17 @@ There are no past versions. Publish this analysis with <code>wflow_publish()</co
        
    &quot;</code></pre>
 <p>The model fit is shown in Figure 1. However, the model did not fit well: <span class="math inline">\(\chi^2 = 3.052231\times 10^{4}\)</span>, <span class="math inline">\(df = 81\)</span>, and most importantly, <span class="math inline">\(RMSEA = 0.096\)</span>, <span class="math inline">\(CFI = 0.92\)</span>, <span class="math inline">\(SRMR = 0.086\)</span>, and <span class="math inline">\(TLI = 0.736\)</span>.</p>
+<div id="graphical-representation-of-model-1" class="section level3">
+<h3>Graphical representation of Model 1</h3>
 <div class="figure" style="text-align: center">
 <img src="figure/SEM-approach.Rmd/fig1-1.png" alt="Model 1" width="672" />
 <p class="caption">
 Model 1
 </p>
 </div>
-<p>The model fit of Model 1 is shown below:</p>
-<pre class="r"><code>o1$f %&gt;% summary()</code></pre>
+</div>
+<div id="parameter-estimates-of-model-1" class="section level3">
+<h3>Parameter estimates of Model 1</h3>
 <pre><code>lavaan 0.6-5 ended normally after 38 iterations
 
   Estimator                                       DWLS
@@ -682,9 +697,54 @@ Scales y*:
     psppipla          1.000                           
     cptppola          1.000                           </code></pre>
 </div>
-<div id="model-2" class="section level2">
+<div id="modification-indices-for-model-1" class="section level3">
+<h3>Modification indices for Model 1</h3>
+<pre><code>         lhs op      rhs        mi    epc sepc.lv sepc.all sepc.nox
+113 actrolga ~~ cptppola 18454.567  0.600   0.600    1.152    1.152
+97   PolTrst =~ cptppola  4671.876 -0.296  -0.307   -0.285   -0.285
+95   PolTrst =~ actrolga  4339.513 -0.291  -0.302   -0.279   -0.279
+94   PolTrst =~ psppsgva  4337.933  0.300   0.311    0.284    0.284
+103 psppsgva ~~ cptppola  3881.199 -0.372  -0.372   -0.783   -0.783
+101 psppsgva ~~ actrolga  3744.406 -0.365  -0.365   -0.790   -0.790
+96   PolTrst =~ psppipla  3539.997  0.285   0.296    0.267    0.267
+102 psppsgva ~~ psppipla  3182.650  0.302   0.302    0.823    0.823
+122 psppipla ~~ cptppola  2886.398 -0.314  -0.314   -0.759   -0.759
+112 actrolga ~~ psppipla  2880.089 -0.316  -0.316   -0.785   -0.785
+88   SocTrst =~ cptppola  2799.184 -0.252  -0.258   -0.240   -0.240
+86   SocTrst =~ actrolga  2294.615 -0.233  -0.238   -0.220   -0.220
+85   SocTrst =~ psppsgva  2221.085  0.234   0.239    0.218    0.218
+87   SocTrst =~ psppipla  2102.559  0.239   0.244    0.220    0.220
+161  trstlgl ~~  trstplc   852.936  1.324   1.324    0.406    0.406
+137 cptppola ~~  trstplt   815.694 -0.363  -0.363   -0.397   -0.397
+110 psppsgva ~~  trstplt   776.113  0.354   0.354    0.437    0.437
+111 psppsgva ~~  trstprt   771.446  0.345   0.345    0.402    0.402
+120 actrolga ~~  trstplt   720.536 -0.347  -0.347   -0.390   -0.390
+107 psppsgva ~~  trstprl   701.688  0.352   0.352    0.400    0.400
+138 cptppola ~~  trstprt   700.969 -0.331  -0.331   -0.341   -0.341
+166  trstplt ~~  trstprt   641.176  1.322   1.322    0.799    0.799
+121 actrolga ~~  trstprt   609.425 -0.312  -0.312   -0.331   -0.331
+126 psppipla ~~  trstprl   545.358  0.319   0.319    0.417    0.417
+117 actrolga ~~  trstprl   542.392 -0.313  -0.313   -0.325   -0.325
+130 psppipla ~~  trstprt   533.491  0.294   0.294    0.392    0.392
+134 cptppola ~~  trstprl   491.231 -0.293  -0.293   -0.296   -0.296
+129 psppipla ~~  trstplt   471.628  0.283   0.283    0.400    0.400
+135 cptppola ~~  trstlgl   442.658 -0.287  -0.287   -0.232   -0.232
+119 actrolga ~~  trstplc   435.822 -0.264  -0.264   -0.192   -0.192
+118 actrolga ~~  trstlgl   372.187 -0.269  -0.269   -0.223   -0.223
+136 cptppola ~~  trstplc   322.740 -0.220  -0.220   -0.156   -0.156
+108 psppsgva ~~  trstlgl   268.379  0.227   0.227    0.206    0.206
+91   SocTrst =~  trstplc   267.924  0.249   0.254    0.106    0.106
+127 psppipla ~~  trstlgl   235.424  0.217   0.217    0.227    0.227
+165  trstplc ~~  trstprt   199.477 -0.536  -0.536   -0.210   -0.210
+133 cptppola ~~   pplhlp   197.965 -0.167  -0.167   -0.138   -0.138
+132 cptppola ~~  pplfair   197.814 -0.162  -0.162   -0.145   -0.145
+82   PolHope =~  trstplc   180.501 -0.147  -0.171   -0.071   -0.071
+123 psppipla ~~  ppltrst   172.056  0.169   0.169    0.200    0.200</code></pre>
+</div>
+</div>
+<div id="model-2" class="section level2 tabset tabset-fade">
 <h2>Model 2</h2>
-<p>The modification indices of Model 1 suggested that all the items of political trust and political be allowed to covary. This, together with poor fit of Model 1, was an indication that those items can load on another factor. Hence, a forth factor was added to explain the remaining covariance of these items. Based on the loadings, it was called <em>Political Pessimism</em> (coded as <code>PolPess</code>), that models a general the positive attitude towards politics.</p>
+<p>The modification indices of Model 1 suggested that all the items of political trust and political hope be allowed to covary. This, together with poor fit of Model 1, was an indication that those items can load on another factor. Hence, a forth factor was added to explain the remaining covariance of these items. Based on the loadings, it was called <em>Political Pessimism</em> (coded as <code>PolPess</code>), that models a general the positive attitude towards politics.</p>
 <pre class="r"><code>Model.2 &lt;- &quot;
 
     # 1. latent variable definitions
@@ -713,14 +773,17 @@ Scales y*:
        
    &quot;</code></pre>
 <p>This model, shown in Figure 2, had a decent fit (<span class="math inline">\(\chi^2 = 2795.73\)</span>, <span class="math inline">\(df = 70\)</span>, <span class="math inline">\(RMSEA = 0.031\)</span>, <span class="math inline">\(CFI = 0.993\)</span>, <span class="math inline">\(SRMR = 0.035\)</span>, and <span class="math inline">\(TLI = 0.954\)</span>.) More specifically, the <span class="math inline">\(\chi^2\)</span> has improved dramatically, and other fit indeces have passed the conventional thresholds (<span class="math inline">\(RMSEA &lt; 0.05, CFI &gt; 0.90, SRMR &lt; 0.08,\)</span> and <span class="math inline">\(TLI &gt; 0.90\)</span>).</p>
+<div id="graphical-representation-of-model-2" class="section level3">
+<h3>Graphical representation of Model 2</h3>
 <div class="figure" style="text-align: center">
 <img src="figure/SEM-approach.Rmd/fig2-1.png" alt="Model 2" width="672" />
 <p class="caption">
 Model 2
 </p>
 </div>
-<p>The parameter estimates of Model 2 are as follows:</p>
-<pre class="r"><code>o2$f %&gt;% summary()</code></pre>
+</div>
+<div id="parameter-estimates-of-model-2" class="section level3">
+<h3>Parameter estimates of Model 2</h3>
 <pre><code>lavaan 0.6-5 ended normally after 65 iterations
 
   Estimator                                       DWLS
@@ -859,7 +922,52 @@ Scales y*:
     psppipla          1.000                           
     cptppola          1.000                           </code></pre>
 </div>
-<div id="model-3" class="section level2">
+<div id="modification-indices-for-model-2" class="section level3">
+<h3>Modification indices for Model 2</h3>
+<pre><code>         lhs op      rhs      mi    epc sepc.lv sepc.all sepc.nox
+177  trstlgl ~~  trstplc 843.890  1.327   1.327    0.407    0.407
+182  trstplt ~~  trstprt 623.120  1.314   1.314    0.806    0.806
+104  SocTrst =~  trstplc 279.209  0.254   0.259    0.109    0.109
+181  trstplc ~~  trstprt 234.256 -0.588  -0.588   -0.232   -0.232
+180  trstplc ~~  trstplt 159.350 -0.512  -0.512   -0.217   -0.217
+179  trstlgl ~~  trstprt 140.246 -0.574  -0.574   -0.255   -0.255
+165  pplfair ~~  trstplc 125.184  0.289   0.289    0.099    0.099
+178  trstlgl ~~  trstplt 118.663 -0.554  -0.554   -0.264   -0.264
+170   pplhlp ~~  trstplc  73.742  0.230   0.230    0.072    0.072
+125 psppsgva ~~  trstplc  71.192 -0.111  -0.111   -0.101   -0.101
+118 psppsgva ~~ psppipla  67.725  1.018   1.018    3.434    3.434
+152 cptppola ~~  trstplc  59.331  0.122   0.122    0.112    0.112
+114  PolPess =~  ppltrst  58.995 -0.096  -0.109   -0.047   -0.047
+105  SocTrst =~  trstplt  54.521 -0.131  -0.134   -0.056   -0.056
+195  PolPess  ~  PolHope  53.648 -1.144  -1.082   -1.082   -1.082
+197  PolPess  ~  PolTrst  53.604 -0.797  -0.733   -0.733   -0.733
+196  PolPess  ~  SocTrst  53.596 -0.409  -0.368   -0.368   -0.368
+184  SocTrst ~~  PolPess  53.591 -0.409  -0.409   -0.409   -0.409
+191  SocTrst  ~  PolPess  53.591 -0.409  -0.455   -0.455   -0.455
+106  SocTrst =~  trstprt  51.724 -0.123  -0.126   -0.053   -0.053
+95   PolHope =~  trstplc  48.132 -0.129  -0.139   -0.058   -0.058
+159  ppltrst ~~  trstplc  47.054  0.198   0.198    0.069    0.069
+103  SocTrst =~  trstlgl  46.848  0.126   0.129    0.049    0.049
+167  pplfair ~~  trstprt  46.628 -0.190  -0.190   -0.094   -0.094
+94   PolHope =~  trstlgl  41.536 -0.142  -0.153   -0.058   -0.058
+130 actrolga ~~  ppltrst  41.433  0.087   0.087    0.107    0.107
+112  PolTrst =~  pplfair  39.241 -0.112  -0.117   -0.054   -0.054
+166  pplfair ~~  trstplt  38.502 -0.178  -0.178   -0.095   -0.095
+174  trstprl ~~  trstplc  36.892 -0.253  -0.253   -0.096   -0.096
+156  ppltrst ~~   pplhlp  36.682 -0.258  -0.258   -0.104   -0.104
+158  ppltrst ~~  trstlgl  34.553  0.203   0.203    0.080    0.080
+144 psppipla ~~  trstplc  30.363 -0.073  -0.073   -0.074   -0.074
+116  PolPess =~   pplhlp  29.496  0.061   0.069    0.031    0.031
+102  SocTrst =~  trstprl  29.427 -0.100  -0.102   -0.040   -0.040
+97   PolHope =~  trstprt  29.309  0.111   0.119    0.050    0.050
+90   PolHope =~  ppltrst  24.967  0.084   0.090    0.038    0.038
+127 psppsgva ~~  trstprt  22.627  0.065   0.065    0.086    0.086
+91   PolHope =~  pplfair  22.197 -0.068  -0.073   -0.034   -0.034
+124 psppsgva ~~  trstlgl  21.902 -0.070  -0.070   -0.072   -0.072
+160  ppltrst ~~  trstplt  20.560 -0.147  -0.147   -0.079   -0.079</code></pre>
+</div>
+</div>
+<div id="model-3" class="section level2 tabset tabset-fade">
 <h2>Model 3</h2>
 <p>Although Model 2 shows a good fit, one might want to see whether different forms of discrimination have different effects in the model. To do so, instead of usnig the aggregated <code>dscrscore</code> in Model 2, all the indicators of discrimination were included in Model 3.</p>
 <pre class="r"><code>Model.3 &lt;- &quot;
@@ -893,14 +1001,17 @@ Scales y*:
    &quot;</code></pre>
 <p>This model had an even better fit (<span class="math inline">\(\chi^2 = 2598.28\)</span>, <span class="math inline">\(df = 142\)</span>, <span class="math inline">\(RMSEA = 0.021\)</span>, <span class="math inline">\(CFI = 0.993\)</span>, <span class="math inline">\(SRMR = 0.035\)</span>, and <span class="math inline">\(TLI = 0.982\)</span>.) The <span class="math inline">\(\chi^2\)</span> has improved slightly, and other fit indeces have been further improved. However, this improvement might be negligible; the degrees of freedom of Model 3 is much higher than that of Model 2, and the fit measures are improved by higher df.</p>
 <p>The parameter estimates of Model 3 is reported in Tables 4-8 and is the graph is shown in Figure 3. For the sake of readability, the edges weights are removed in the plot.</p>
+<div id="graphical-representation-of-model-3" class="section level3">
+<h3>Graphical representation of Model 3</h3>
 <div class="figure" style="text-align: center">
 <img src="figure/SEM-approach.Rmd/fig3-1.png" alt="Model 3" width="672" />
 <p class="caption">
 Model 3
 </p>
 </div>
-<p>The fit of Model 3 is as follows:</p>
-<pre class="r"><code>o3$f %&gt;% summary()</code></pre>
+</div>
+<div id="parameter-estimates-of-model-3" class="section level3">
+<h3>Parameter estimates of Model 3</h3>
 <pre><code>lavaan 0.6-5 ended normally after 142 iterations
 
   Estimator                                       DWLS
@@ -1074,6 +1185,51 @@ Scales y*:
     actrolga          1.000                           
     psppipla          1.000                           
     cptppola          1.000                           </code></pre>
+</div>
+<div id="modification-indices-for-model-3" class="section level3">
+<h3>Modification indices for Model 3</h3>
+<pre><code>         lhs op      rhs      mi    epc sepc.lv sepc.all sepc.nox
+285  trstlgl ~~  trstplc 871.816  1.345   1.345    0.413    0.413
+290  trstplt ~~  trstprt 616.609  1.303   1.303    0.804    0.804
+212  SocTrst =~  trstplc 284.486  0.254   0.261    0.109    0.109
+289  trstplc ~~  trstprt 212.541 -0.558  -0.558   -0.220   -0.220
+287  trstlgl ~~  trstprt 154.032 -0.599  -0.599   -0.268   -0.268
+288  trstplc ~~  trstplt 142.435 -0.482  -0.482   -0.204   -0.204
+286  trstlgl ~~  trstplt 133.182 -0.585  -0.585   -0.281   -0.281
+273  pplfair ~~  trstplc 132.725  0.296   0.296    0.101    0.101
+278   pplhlp ~~  trstplc  79.810  0.239   0.239    0.075    0.075
+305  PolPess  ~  PolTrst  76.743 -1.050  -0.966   -0.966   -0.966
+303  PolPess  ~  PolHope  76.720 -1.511  -1.431   -1.431   -1.431
+304  PolPess  ~  SocTrst  76.681 -0.538  -0.484   -0.484   -0.484
+299  SocTrst  ~  PolPess  76.671 -0.538  -0.598   -0.598   -0.598
+292  SocTrst ~~  PolPess  76.669 -0.538  -0.538   -0.538   -0.538
+203  PolHope =~  trstplc  68.968 -0.154  -0.166   -0.070   -0.070
+233 psppsgva ~~  trstplc  65.335 -0.106  -0.106   -0.096   -0.096
+226 psppsgva ~~ psppipla  57.696  0.994   0.994    3.344    3.344
+222  PolPess =~  ppltrst  56.567 -0.094  -0.107   -0.046   -0.046
+213  SocTrst =~  trstplt  55.327 -0.132  -0.135   -0.056   -0.056
+214  SocTrst =~  trstprt  51.912 -0.123  -0.126   -0.053   -0.053
+267  ppltrst ~~  trstplc  51.731  0.207   0.207    0.072    0.072
+211  SocTrst =~  trstlgl  46.787  0.125   0.128    0.049    0.049
+275  pplfair ~~  trstprt  45.125 -0.186  -0.186   -0.092   -0.092
+260 cptppola ~~  trstplc  43.888  0.104   0.104    0.096    0.096
+238 actrolga ~~  ppltrst  40.868  0.086   0.086    0.106    0.106
+264  ppltrst ~~   pplhlp  39.292 -0.267  -0.267   -0.108   -0.108
+220  PolTrst =~  pplfair  37.177 -0.108  -0.113   -0.052   -0.052
+274  pplfair ~~  trstplt  37.095 -0.174  -0.174   -0.093   -0.093
+202  PolHope =~  trstlgl  34.104 -0.128  -0.138   -0.053   -0.053
+266  ppltrst ~~  trstlgl  32.209  0.195   0.195    0.077    0.077
+205  PolHope =~  trstprt  30.226  0.112   0.120    0.051    0.051
+210  SocTrst =~  trstprl  29.252 -0.099  -0.102   -0.040   -0.040
+282  trstprl ~~  trstplc  29.055 -0.223  -0.223   -0.085   -0.085
+224  PolPess =~   pplhlp  28.504  0.060   0.068    0.030    0.030
+252 psppipla ~~  trstplc  28.019 -0.070  -0.070   -0.071   -0.071
+232 psppsgva ~~  trstlgl  24.760 -0.075  -0.075   -0.077   -0.077
+198  PolHope =~  ppltrst  24.461  0.083   0.089    0.038    0.038
+199  PolHope =~  pplfair  23.096 -0.069  -0.075   -0.035   -0.035
+235 psppsgva ~~  trstprt  22.509  0.065   0.065    0.086    0.086
+268  ppltrst ~~  trstplt  21.693 -0.150  -0.150   -0.082   -0.082</code></pre>
+</div>
 </div>
 </div>
 <div id="discussion" class="section level1">

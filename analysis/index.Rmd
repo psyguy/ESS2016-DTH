@@ -17,7 +17,8 @@ On the other hand, the *ruler* (i.e., the citizens) should see a positive outloo
 
 Among the myriad of factors involved in trust in others (including politicians) and hope in the efficacy of citizens' participation in democracy, perception of discrimination might play a key role. If members of a society feel being discriminated against, they might tend to trust others (and their politicians) less, and see a less bright future in the horizon.
 
-This study, based on the 8^th^ round of the European Social Survey (ESS) data (doi: [10.21338/nsd-ess8-2016](https://www.doi.org/10.21338/nsd-ess8-2016)), investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other---and how.
+This study, based on the 8^th^ round of the [European Social Survey](https://www.europeansocialsurvey.org/)
+(ESS) data (doi: [10.21338/nsd-ess8-2016](https://www.doi.org/10.21338/nsd-ess8-2016)), investigates whether constructs of trust, hope in political change, and perception of discrimination are related to each other---and how.
 
 
 # Research Question
@@ -25,9 +26,72 @@ This study, based on the 8^th^ round of the European Social Survey (ESS) data (d
 Is there a link between the perception of discrimination and trust in others and hope in the effectiveness of participation in politics?
 
 
+```{r data, cache = FALSE, echo=FALSE, include=FALSE}
+library(tidyverse)
+
+# selecting items and reading data ----------------------------------------------
+
+items <- list(
+  discrimination = c("dscrrce",
+                     "dscrntn",
+                     "dscrrlg",
+                     "dscrlng",
+                     "dscretn",
+                     "dscrage",
+                     "dscrgnd",
+                     "dscrsex",
+                     "dscrdsb",
+                     "dscroth"
+  ),
+
+  SocTrst = c("ppltrst",
+              "pplfair",
+              "pplhlp"
+  ),
+
+  PolTrst = c("trstprl",
+              "trstlgl",
+              "trstplc",
+              "trstplt",
+              "trstprt"
+  ),
+
+  PolHope = c("psppsgva",
+              "actrolga",
+              "psppipla",
+              "cptppola"),
+
+  interest_political = "polintr"
+
+)
+
+data <- read.csv("./data/ess2016_selected.csv")
+
+
+# cleaning/recoding the data ----------------------------------------------
+
+d.tmp <- data
+# removing invalid/missing data
+d.tmp[d.tmp>10] <- NA
+d.tmp$polintr[d.tmp$polintr>4] <- NA
+d.tmp[,20:23][d.tmp[,20:23]>5] <- NA
+# reverse-coding polint
+d.tmp$polintr <- (d.tmp$polintr-5) %>% abs()
+
+dscrscore <- d.tmp %>% select(contains("dscr")) %>% rowSums()
+
+ds <- d.tmp %>% select(contains("dscr"))
+dspc <- (princomp(ds,1)$scores)[,1]
+
+d <- d.tmp %>% cbind(dscrscore, dspc) %>%  na.omit()
+save(d, file = "output/d.RData")
+
+```
+
 # Material
 
-The original dataset included responses from 23 European countries participating in @noauthor_european_2017. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and "don't know") were excluded from the dataset (making $N = 40400$).
+The original dataset included responses from 23 European countries participating in ESS 2016. The items of the ESS questionnaire relevant to the research question (i.e., trust in others and politicians; perception of discrimination; and hope for a positive outcome of participation in politics) were extracted. The items and their descriptions can be found in the appendix (the ESS manual). The invalid responses (missing, refused to answer, and "don't know") were excluded from the dataset (making $N = `r nrow(d)`$).
+
 
 The items about discrimination were binary, including various forms of discrimination that people can experience. These items include `dscrrce`, `dscrntn`, `dscrrlg`, `dscrlng`, `dscretn`, `dscrage`, `dscrgnd`, `dscrsex`, `dscrdsb`, and `dscroth`. To summarize these items, another item (i.e., `dscrscore`) was added to the dataset which was defined as some of the responses on the indicators of discrimination. Hence, experiencing multiple forms of discrimination increases the total score on the perception of discrimination.
 
