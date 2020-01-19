@@ -43,7 +43,7 @@ pagebreak <- function(){
 }
 
 
-l_o <- function(m, d = d, cluster = NULL, optim.method = "em"){
+l_o <- function(m, d = d){
 
   f <- lavaan(m,
               d,
@@ -51,8 +51,6 @@ l_o <- function(m, d = d, cluster = NULL, optim.method = "em"){
                           "actrolga",
                           "psppipla",
                           "cptppola"),
-              cluster = cluster,
-              optim.method = "em",
               std.lv = TRUE,
               auto.var=TRUE)
 
@@ -221,7 +219,6 @@ The modification indices of Model 1 suggested that all the items of political tr
 ```{r, include=TRUE}
 Model.2 <- "
 
-level: 1
     # 1. latent variable definitions
        PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
        SocTrst =~ NA*ppltrst + pplfair + pplhlp
@@ -246,26 +243,12 @@ level: 1
        ppltrst + pplfair + pplhlp ~ 1
        trstprl + trstlgl + trstplc + trstplt + trstprt ~ 1
        
-level: 2
-        # 1. latent variable definitions
-       PolHope =~ NA*psppsgva + actrolga + psppipla + cptppola
-       SocTrst =~ NA*ppltrst + pplfair + pplhlp
-       PolTrst =~ NA*trstprl + trstlgl + trstplc + trstplt + trstprt
-       PolPess =~ NA*psppsgva + actrolga + psppipla + cptppola +
-         trstprl + trstlgl + trstplc + trstplt + trstprt
-       
-    # 2. regressions
-       PolHope + SocTrst + PolTrst + PolPess ~ dscrscore + polintr
-      
-
-
-
    "
 ```
 
 ```{r, echo=FALSE, include=FALSE}
 if(run.model.2){
-  o2 <- l_o(Model.2, d, cluster = "cntry")
+  o2 <- l_o(Model.2, d)
   save(o2, file = "output/o2.RData")
 }
 ```
